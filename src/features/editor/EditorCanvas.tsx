@@ -18,10 +18,16 @@ import { ObjectShape } from './ObjectShape';
 import { ObjectTransformer, VertexHandles } from './SelectionHandles';
 import { setStage } from './stageRegistry';
 import { fitView, zoomAt } from './viewUtils';
-import { paintOrder } from './zOrder';
+import { isGroundLevel, paintOrder } from './zOrder';
+import { ZoneShape } from './ZoneShape';
+import { HeatmapLayer, ShadowLayer, SunArc } from '../sun/SunLayers';
+import { useSunStore } from '../../state/sunStore';
+import { updateZone } from '../../state/gardenActions';
 
 Konva.hitOnDragEnabled = true;
 Konva.dragDistance = 4;
+// Phones report 2.6–3.5× pixel density; 2× is sharp enough and much cheaper to redraw.
+Konva.pixelRatio = Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2);
 
 const LONG_PRESS_MS = 550;
 const LONG_PRESS_SLOP_PX = 10;
@@ -50,6 +56,8 @@ export function EditorCanvas() {
   const theme = useUiStore((s) => s.theme);
   const coarse = useIsCoarsePointer();
   const colors = useMemo(() => canvasColors(theme), [theme]);
+  const sunView = useSunStore((s) => s.view);
+  const sunResult = useSunStore((s) => s.result);
 
   const dragCancelled = useRef(false);
   const pinch = useRef<{ dist: number; center: Vec2; view: typeof view } | null>(null);
@@ -200,8 +208,12 @@ export function EditorCanvas() {
   };
 
   const onStageTap = (e: KonvaEventObject<MouseEvent | TouchEvent | PointerEvent>) => {
-    if (toolAtDown.current === 'select' && uiStore.getState().tool.type === 'select' && e.target === stageRef.current) {
-      uiStore.getState().select(null);
+    const fromSelect = toolAtDown.current === 'select' && uiStore.getState().tool.type === 'select';
+    if (fromSelect && e.target === stageRef.current) uiStore.getState().select(null);
+    // In sun views, a tap anywhere shows the sun info for that spot.
+    if (fromSelect && useSunStore.getState().view !== 'off') {
+      const p = worldPointer();
+      if (p) useSunStore.getState().set({ probe: p });
     }
   };
 
@@ -222,7 +234,11 @@ export function EditorCanvas() {
   // ---- derived ----
   const hidden = new Set(garden.settings.hiddenGroups);
   const visible = paintOrder(garden.objects.filter((o) => !hidden.has(kindInfo(o.kind).group)));
+  const ground = visible.filter(isGroundLevel);
+  const raised = visible.filter((o) => !isGroundLevel(o));
   const selected = garden.objects.find((o) => o.id === selectedId);
+  const selectedZone = garden.zones.find((z) => z.id === selectedId);
+  const showZones = !hidden.has('zones');
   const snapStep = garden.settings.snap ? garden.settings.gridSizeM : 0;
   const boundaryFlat = garden.boundary.flatMap((p) => [p.x, p.y]);
   const isSelect = tool.type === 'select';
@@ -272,7 +288,7 @@ export function EditorCanvas() {
             onClick={() => isSelect && uiStore.getState().select(BOUNDARY_ID)}
             onTap={() => isSelect && uiStore.getState().select(BOUNDARY_ID)}
           />
-          {visible.map((o) => (
+          {ground.map((o) => (
             <ObjectShape
               key={o.id}
               obj={o}
@@ -286,6 +302,31 @@ export function EditorCanvas() {
               onGeometry={onGeometry}
             />
           ))}
+        </Layer>
+        {/* Separate canvas so animating the sun only redraws the shadows, not every object. */}
+        <Layer listening={false}>
+          {sunView === 'hours' && sunResult && <HeatmapLayer result={sunResult} opacity={theme === 'contrast' ? 0.85 : 0.7} />}
+          {sunView === 'shadows' && <ShadowLayer garden={garden} dark={theme === 'dark'} />}
+        </Layer>
+        <Layer listening={isSelect}>
+          {raised.map((o) => (
+            <ObjectShape
+              key={o.id}
+              obj={o}
+              selected={o.id === selectedId}
+              scale={view.scale}
+              colors={colors}
+              draggable={!coarse || o.id === selectedId}
+              snapStep={snapStep}
+              dragCancelled={dragCancelled}
+              onSelect={onSelect}
+              onGeometry={onGeometry}
+            />
+          ))}
+          {showZones &&
+            garden.zones.map((z) => (
+              <ZoneShape key={z.id} zone={z} selected={z.id === selectedId} scale={view.scale} colors={colors} onSelect={onSelect} />
+            ))}
           <ObjectLabels objects={visible} scale={view.scale} colors={colors} />
         </Layer>
         <Layer>
@@ -317,6 +358,19 @@ export function EditorCanvas() {
               onChange={(points, final) => update((g) => setBoundary(g, points), final ? undefined : { coalesceKey: 'boundary.vertices' })}
             />
           )}
+          {isSelect && selectedZone && (
+            <VertexHandles
+              points={selectedZone.points}
+              closed
+              minPoints={3}
+              scale={view.scale}
+              coarse={coarse}
+              snapStep={snapStep}
+              colors={colors}
+              onChange={(points, final) => update((g) => updateZone(g, selectedZone.id, { points }), final ? undefined : { coalesceKey: `${selectedZone.id}.vertices` })}
+            />
+          )}
+          {sunView === 'shadows' && <SunArc garden={garden} scale={view.scale} textColor={colors.text} />}
           <DrawingPreview tool={tool} scale={view.scale} colors={colors} />
         </Layer>
       </Stage>

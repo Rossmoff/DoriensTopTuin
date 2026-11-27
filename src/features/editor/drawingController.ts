@@ -3,10 +3,11 @@
  * Works on world coordinates (metres); reads and writes the zustand stores directly
  * so the canvas and the HTML hint bar can both drive it.
  */
+import { nanoid } from 'nanoid';
 import type { Geometry, Vec2 } from '../../domain/types';
 import { distance, snapPoint } from '../../domain/geometry';
 import { createObject, defaultGeometry } from '../../data/objectCatalog';
-import { addObject, setBoundary } from '../../state/gardenActions';
+import { addObject, addZone, setBoundary } from '../../state/gardenActions';
 import { gardenStore } from '../../state/gardenStore';
 import { uiStore } from '../../state/uiStore';
 import { useDrawStore } from './drawStore';
@@ -36,7 +37,7 @@ export function pointerDown(world: Vec2) {
     }
     return;
   }
-  if (tool.type === 'draw' || tool.type === 'boundary') {
+  if (tool.type === 'draw' || tool.type === 'boundary' || tool.type === 'zone') {
     draw().set({ pressStart: snapped(world), cursor: snapped(world) });
   }
 }
@@ -48,7 +49,7 @@ export function pointerMove(world: Vec2) {
     if (m?.dragging) draw().set({ measure: { ...m, b: world } });
     return;
   }
-  if (tool.type === 'draw' || tool.type === 'boundary') draw().set({ cursor: snapped(world) });
+  if (tool.type === 'draw' || tool.type === 'boundary' || tool.type === 'zone') draw().set({ cursor: snapped(world) });
 }
 
 export function pointerUp(world: Vec2) {
@@ -63,7 +64,7 @@ export function pointerUp(world: Vec2) {
   const p = snapped(world);
   draw().set({ pressStart: null });
 
-  const multiPoint = tool.type === 'boundary' || (tool.type === 'draw' && (tool.shape === 'polygon' || tool.shape === 'polyline'));
+  const multiPoint = tool.type === 'boundary' || tool.type === 'zone' || (tool.type === 'draw' && (tool.shape === 'polygon' || tool.shape === 'polyline'));
   if (multiPoint) {
     if (!isTap(pressStart, p)) return; // a drag, not a tap: ignore
     const closes = tool.type !== 'draw' || tool.shape === 'polygon';
@@ -123,6 +124,18 @@ export function finish() {
     gardenStore.getState().update((g) => setBoundary(g, points));
     draw().reset();
     uiStore.getState().setTool({ type: 'select' });
+    return;
+  }
+  if (tool.type === 'zone') {
+    if (points.length < 3) {
+      uiStore.getState().showToast('A zone needs at least 3 corners.');
+      return;
+    }
+    const zone = { id: nanoid(10), kind: tool.kind, points };
+    gardenStore.getState().update((g) => addZone(g, zone));
+    draw().reset();
+    uiStore.getState().setTool({ type: 'select' });
+    uiStore.getState().select(zone.id);
     return;
   }
   if (tool.type !== 'draw') return;

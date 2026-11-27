@@ -1,6 +1,8 @@
 import { GROUPS, KIND_LIST } from '../../data/objectCatalog';
 import { useUiStore } from '../../state/uiStore';
 import { useDrawStore } from '../editor/drawStore';
+import { ZONE_STYLE } from '../editor/ZoneShape';
+import type { ZoneKind } from '../../domain/types';
 
 export function AddMenu({ anchor }: { anchor: { left: number; top: number } }) {
   const setTool = useUiStore((s) => s.setTool);
@@ -31,6 +33,26 @@ export function AddMenu({ anchor }: { anchor: { left: number; top: number } }) {
             </div>
           </div>
         ))}
+        <div>
+          <h4>Zones (for plant advice)</h4>
+          <div className="grid">
+            {(Object.keys(ZONE_STYLE) as ZoneKind[]).map((k) => (
+              <button
+                key={k}
+                className="btn"
+                role="menuitem"
+                data-testid={`add-zone-${k}`}
+                onClick={() => {
+                  useDrawStore.getState().reset();
+                  setTool({ type: 'zone', kind: k });
+                }}
+              >
+                <span aria-hidden style={{ width: 14, height: 14, borderRadius: 3, background: ZONE_STYLE[k].fill, border: `2px dashed ${ZONE_STYLE[k].stroke}` }} />{' '}
+                {ZONE_STYLE[k].label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

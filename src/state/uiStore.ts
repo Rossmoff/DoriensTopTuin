@@ -1,10 +1,11 @@
 import { create } from 'zustand';
-import type { GeometryType, Id, ObjectKind, Vec2 } from '../domain/types';
+import type { GeometryType, Id, ObjectKind, Vec2, ZoneKind } from '../domain/types';
 
 export type Tool =
   | { type: 'select' }
   | { type: 'draw'; kind: ObjectKind; shape: GeometryType }
   | { type: 'boundary' }
+  | { type: 'zone'; kind: ZoneKind }
   | { type: 'measure' };
 
 export type Theme = 'light' | 'dark' | 'contrast';

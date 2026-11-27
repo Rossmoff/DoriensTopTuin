@@ -10,6 +10,9 @@ const TIER: Record<ObjectKind, number> = {
   shrub: 5, tree: 6, neighbourTree: 6,
 };
 
+/** Tiers 0–2 are ground level: shadows and the sun map are drawn on top of them. */
+export const isGroundLevel = (o: GardenObject) => TIER[o.kind] <= 2;
+
 export function paintOrder(objects: GardenObject[]): GardenObject[] {
   return objects
     .map((o, i) => ({ o, i }))

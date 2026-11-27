@@ -5,6 +5,7 @@ import { Icon } from '../../ui/Icon';
 import { useDrawStore } from '../editor/drawStore';
 import { exportJson, exportPng, importJsonFile, pickFile } from '../plans/fileActions';
 import { AddMenu } from './AddMenu';
+import { useSunStore } from '../../state/sunStore';
 
 const THEMES: { id: Theme; label: string }[] = [
   { id: 'light', label: 'Light' },
@@ -83,6 +84,7 @@ export function TopBar() {
       >
         <Icon name="ruler" /> <span className="only-wide">Measure</span>
       </button>
+      <SunToggle />
       <div className="spacer" />
       <button ref={moreRef} className="btn icon ghost" onClick={() => setMoreOpen(!moreOpen)} aria-label="More" aria-haspopup="menu" data-testid="more-button">
         <Icon name="more" />
@@ -151,5 +153,23 @@ export function TopBar() {
         </>
       )}
     </header>
+  );
+}
+
+function SunToggle() {
+  const view = useSunStore((s) => s.view);
+  const set = useSunStore((s) => s.set);
+  const on = view !== 'off';
+  return (
+    <button
+      className={`btn ghost ${on ? 'active' : ''}`}
+      onClick={() => set(on ? { view: 'off', playing: false, probe: null } : { view: 'shadows' })}
+      aria-pressed={on}
+      aria-label="Sun and shade"
+      title="Sun and shade"
+      data-testid="sun-button"
+    >
+      <Icon name="sun" /> <span className="only-wide">Sun</span>
+    </button>
   );
 }

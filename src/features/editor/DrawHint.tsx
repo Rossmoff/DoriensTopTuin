@@ -2,6 +2,7 @@ import { kindInfo } from '../../data/objectCatalog';
 import type { GeometryType } from '../../domain/types';
 import { useUiStore } from '../../state/uiStore';
 import { useDrawStore } from './drawStore';
+import { ZONE_STYLE } from './ZoneShape';
 import * as drawing from './drawingController';
 
 const SHAPE_LABEL: Record<GeometryType, string> = { rect: 'Rectangle', polygon: 'Shape', polyline: 'Line', circle: 'Circle' };
@@ -16,7 +17,10 @@ export function DrawHint() {
   let text = '';
   let multi = false;
   if (tool.type === 'measure') text = 'Drag, or tap two points, to measure a distance.';
-  else if (tool.type === 'boundary') {
+  else if (tool.type === 'zone') {
+    text = `Tap the corners of the ${ZONE_STYLE[tool.kind].label.toLowerCase()} zone. Tap the first corner, or press Finish, to close.`;
+    multi = true;
+  } else if (tool.type === 'boundary') {
     text = 'Tap the corners of the plot. Tap the first corner, or press Finish, to close.';
     multi = true;
   } else {

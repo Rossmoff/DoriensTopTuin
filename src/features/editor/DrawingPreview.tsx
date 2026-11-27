@@ -4,6 +4,7 @@ import { distance, perimeter, polygonArea } from '../../domain/geometry';
 import { kindInfo } from '../../data/objectCatalog';
 import type { Tool } from '../../state/uiStore';
 import { useDrawStore } from './drawStore';
+import { ZONE_STYLE } from './ZoneShape';
 import type { CanvasColors } from './canvasTheme';
 
 const fmt = (n: number) => (n < 10 ? n.toFixed(2) : n.toFixed(1));
@@ -36,8 +37,8 @@ export function DrawingPreview({ tool, scale, colors }: { tool: Tool; scale: num
     );
   }
 
-  if (tool.type !== 'draw' && tool.type !== 'boundary') return null;
-  const fill = tool.type === 'draw' ? kindInfo(tool.kind).fill : 'transparent';
+  if (tool.type !== 'draw' && tool.type !== 'boundary' && tool.type !== 'zone') return null;
+  const fill = tool.type === 'draw' ? kindInfo(tool.kind).fill : tool.type === 'zone' ? ZONE_STYLE[tool.kind].fill : 'transparent';
 
   // Rect / circle: drag from press start to cursor.
   if (tool.type === 'draw' && (tool.shape === 'rect' || tool.shape === 'circle')) {
@@ -64,7 +65,7 @@ export function DrawingPreview({ tool, scale, colors }: { tool: Tool; scale: num
   }
 
   // Multi-point tools.
-  const closed = tool.type === 'boundary' || (tool.type === 'draw' && tool.shape === 'polygon');
+  const closed = tool.type !== 'draw' || tool.shape === 'polygon';
   const live = cursor ? [...points, cursor] : points;
   const last = points[points.length - 1];
   const seg = last && cursor ? distance(last, cursor) : 0;

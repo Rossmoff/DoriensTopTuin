@@ -14,6 +14,10 @@ import { getRepository, openGarden, startAutosave } from './state/persistence';
 import { useUiStore } from './state/uiStore';
 import { useIsNarrow } from './ui/useMediaQuery';
 import { useKeyboard } from './useKeyboard';
+import { SunBar } from './features/sun/SunBar';
+import { SunProbe } from './features/sun/SunProbe';
+import { useSunHoursJob } from './features/sun/useSunHoursJob';
+import { useSunStore } from './state/sunStore';
 
 function Toast() {
   const toast = useUiStore((s) => s.toast);
@@ -51,7 +55,9 @@ export function App() {
   const dialog = useUiStore((s) => s.dialog);
   const narrow = useIsNarrow();
   const [ready, setReady] = useState(false);
+  const sunView = useSunStore((s) => s.view);
   useKeyboard();
+  useSunHoursJob();
 
   useEffect(() => {
     const stop = startAutosave();
@@ -72,7 +78,7 @@ export function App() {
   return (
     <div className="app" data-theme={theme}>
       <TopBar />
-      <main className={`main ${narrow ? 'with-sheet' : ''} ${tool.type !== 'select' ? 'with-hint' : ''}`}>
+      <main className={`main ${narrow ? 'with-sheet' : ''} ${tool.type !== 'select' ? 'with-hint' : ''} ${sunView !== 'off' ? 'with-sunbar' : ''}`}>
         {garden && (
           <>
             <div className="canvas-area">
@@ -81,6 +87,8 @@ export function App() {
               <Compass />
               <ScaleBar />
               <ZoomControls />
+              {sunView !== 'off' && tool.type === 'select' && <SunProbe />}
+              {sunView !== 'off' && <SunBar />}
             </div>
             {narrow ? (
               <BottomSheet>

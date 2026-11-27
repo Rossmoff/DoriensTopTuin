@@ -7,6 +7,7 @@ import { setBoundary, updateSettings } from '../../state/gardenActions';
 import { useGardenStore } from '../../state/gardenStore';
 import { BOUNDARY_ID, useUiStore } from '../../state/uiStore';
 import { NumberField } from '../../ui/NumberField';
+import { SunSettings } from '../sun/SunSettings';
 
 const fmt = (n: number) => (Math.round(n * 10) / 10).toString();
 
@@ -52,7 +53,7 @@ export function GardenProperties() {
   const hidden = new Set(garden.settings.hiddenGroups);
   const soil = garden.site.soil;
 
-  const toggleGroup = (id: ObjectGroup) => {
+  const toggleGroup = (id: ObjectGroup | 'zones') => {
     const next = hidden.has(id) ? garden.settings.hiddenGroups.filter((g) => g !== id) : [...garden.settings.hiddenGroups, id];
     update((g) => updateSettings(g, { hiddenGroups: next }));
   };
@@ -98,6 +99,11 @@ export function GardenProperties() {
           <input type="checkbox" checked={!hidden.has(gr.id)} onChange={() => toggleGroup(gr.id)} /> {gr.label}
         </label>
       ))}
+      <label className="check">
+        <input type="checkbox" checked={!hidden.has('zones')} onChange={() => toggleGroup('zones')} /> Zones (shady / wet / extra dry)
+      </label>
+
+      <SunSettings />
 
       <h3>Site soil</h3>
       <label className="field">

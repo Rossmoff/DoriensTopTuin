@@ -7,7 +7,7 @@ No accounts, no paid APIs, works offline, must work well on a phone in the garde
 
 ## Status / phases
 - [x] Phase 1 — editor, touch support, save/load (IndexedDB + JSON), PWA shell
-- [ ] Phase 2 — sun position, shadows, sun-hours heatmap (Web Worker), manual zones
+- [x] Phase 2 — sun position, shadows, sun-hours heatmap (Web Worker), manual zones
 - [ ] Phase 3 — site profile, plant database (~150 plants), suitability matching
 - [ ] Phase 4 — plant placement, warnings, bloom & vegetable calendars, export
 
@@ -41,6 +41,17 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
 - `src/features/editor/` — canvas: `EditorCanvas` (stage, pinch/wheel zoom, long-press),
   `ObjectShape`, `SelectionHandles` (Transformer + vertex handles), `drawingController` (tools →
   objects, reads/writes stores directly), overlays (compass, scale bar, zoom, draw hint, context menu).
+- `src/domain/sun/` — `timezone.ts` (Intl-based local⇄UTC, DST-safe), `sunPosition.ts` (NOAA
+  algorithm, own implementation instead of SunCalc; `sunDay` sunrise/sunset/solar noon; `calibrate`),
+  `shadow.ts` (shadow vector, prism and tree-crown shadows, leaf season), `raster.ts` (scan-line
+  fill on a cell grid), `sunHours.ts` (sun-hours map, light classes, point queries).
+- `src/workers/sunHours.worker.ts` + `src/features/sun/sunHoursClient.ts` — the map is computed in a
+  module Web Worker; a new request terminates a running one. `useSunHoursJob` recomputes (350 ms
+  debounce) when anything that affects sun hours changes while the map is shown.
+- `src/features/sun/` — `SunBar` (view switch, date, presets, time slider, play, period), `SunLayers`
+  (shadow shape, heatmap bitmap, sun arc), `SunProbe` (tap-a-spot card), `SunSettings` (leaf season,
+  bare-tree transmission, calibration), `SunReadout` (average sun hours of a bed).
+- `src/state/sunStore.ts` — sun view state (view, date, minutes, period, last result, probe).
 - `src/features/panels/` — properties panel (side panel ≥768 px, bottom sheet below).
 - `src/features/plans/`, `src/features/toolbar/` — plans dialog, new plan, import/export, top bar.
 
@@ -64,12 +75,33 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
 - Multi-point tools finish by tapping the first point (polygon), tapping the last point again, the
   Finish button or Enter. Konva's own dblclick is *not* used (it fires for taps far apart).
 
+### Sun model
+- Sun position: NOAA/Meeus, geometric altitude; sunrise/sunset at −0.833°. Times are local
+  (Europe/Brussels) minutes after midnight; `zonedToUtc` handles summer time.
+- Shadow vector per metre of height = (1/tan alt) along azimuth+180°, rotated by `planUpBearingDeg`;
+  capped at 100 m/m for very low sun.
+- Buildings/walls/hedges/fences: vertical prisms (`prismShadow`; convex → one hull, otherwise
+  footprint + one parallelogram per edge). Trees: crown = ellipsoid between crownBaseHeight and
+  height → shadow ellipse with semi-axes r and √(r² + c²|v|²), plus a thin trunk.
+- Opacity: `shadowOpacity` (greenhouse 0.3); deciduous trees/hedges outside the leaf season block
+  `1 − leaflessTransmission` (default 30%). Overlapping partial shadows multiply transmission, but one
+  object never counts twice in a cell (stamp buffer).
+- Sun-hours map: 0.5 m cells over the boundary bbox, cells outside the plot or under a roof are NaN.
+  15-min samples at slot midpoints; periods sample weekly (or daily). Value = average hours/day.
+- Rendering: ground-level objects → shadow/heatmap layer (own Konva layer, so animation only redraws
+  that canvas) → raised objects → zones → labels. Shadow polygons are filled in one nonzero path
+  with uniform winding so overlaps don't darken. `Konva.pixelRatio` is capped at 2.
+- Manual zones: `shady` forces the light class to shade; `wet` / `extraDry` feed moisture (phase 3).
+- Measured: growing-season map for a busy 30 × 50 m garden ≈ 0.25 s desktop, ≈ 0.8 s at 4× CPU
+  throttle; UI stays responsive (worker).
+
 ### Konva gotchas found so far
 - Closed `Line` without fill still fills on the hit canvas → set `fillEnabled={false}` for outlines.
 - After dragging a `Line`, reset node x/y to 0 before committing new points (react-konva won't
   re-apply an unchanged `x={0}` prop).
 - The click after a long-press release must not close the menu or deselect (see `openedAt`,
   `toolAtDown`).
+- A Konva Group's opacity is applied per child (overlaps darken); draw unions in one custom Shape.
 
 ## Site defaults (editable in the app)
 - Location 50.96 N, 5.45 E, Europe/Brussels.
@@ -88,6 +120,9 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
 - Main purpose of shade: classify spots as full sun / partial shade / shade for plant advice.
   Manual sun mode = calibration (azimuth offset + altitude factor).
 - Deploy via GitHub Pages (public repo). Commit and push each phase to the working branch.
+- Sun calibration is entered as compass bearings (sunrise/sunset) and midday altitude for a date.
+- The tap-a-spot card works in both sun views; the full read-only "garden walk" mode with plant
+  suggestions comes with phase 3.
 
 ## Conventions
 - TypeScript strict; no `any` in domain code. Pure logic in `src/domain`, tested with Vitest next to

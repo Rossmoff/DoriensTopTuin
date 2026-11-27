@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { Id } from '../../domain/types';
-import { deleteObject, duplicateObject, reorderObject, rotateObject, updateObject } from '../../state/gardenActions';
+import { deleteObject, deleteZone, duplicateObject, reorderObject, rotateObject, updateObject } from '../../state/gardenActions';
 import { gardenStore } from '../../state/gardenStore';
 import { uiStore } from '../../state/uiStore';
 
@@ -20,6 +20,11 @@ export function objectActions(id: Id | null) {
       if (newId) uiStore.getState().select(newId);
     },
     remove: () => {
+      if (id && gardenStore.getState().garden?.zones.some((z) => z.id === id)) {
+        update((g) => deleteZone(g, id));
+        uiStore.getState().select(null);
+        return;
+      }
       if (!ok()) return;
       update((g) => deleteObject(g, id!));
       uiStore.getState().select(null);

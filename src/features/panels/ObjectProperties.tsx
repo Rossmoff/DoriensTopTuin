@@ -1,11 +1,12 @@
 import type { Foliage, GardenObject, Geometry, ObjectKind } from '../../domain/types';
 import { geometryArea, geometryLength } from '../../domain/geometry';
-import { isTreeKind, KIND_LIST, kindInfo } from '../../data/objectCatalog';
+import { isPlantingKind, isTreeKind, KIND_LIST, kindInfo } from '../../data/objectCatalog';
 import { setGeometry, updateObject } from '../../state/gardenActions';
 import { useGardenStore } from '../../state/gardenStore';
 import { Icon } from '../../ui/Icon';
 import { NumberField } from '../../ui/NumberField';
 import { useObjectActions } from './useObjectActions';
+import { SunReadout } from '../sun/SunReadout';
 
 const fmt = (n: number) => (Math.round(n * 100) / 100).toString();
 
@@ -47,6 +48,7 @@ export function ObjectProperties({ obj }: { obj: GardenObject }) {
           ))}
         </select>
       </label>
+      {(isPlantingKind(obj.kind) || obj.kind === 'terrace') && <SunReadout obj={obj} />}
       <NumberField label="Height" unit="m" value={obj.height} min={0} max={60} testId="prop-height" onChange={(v) => patch({ height: v }, 'height')} />
 
       <h3>Size &amp; position</h3>

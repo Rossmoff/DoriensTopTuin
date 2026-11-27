@@ -4,6 +4,7 @@ import { useGardenStore } from '../../state/gardenStore';
 import { BOUNDARY_ID, useUiStore } from '../../state/uiStore';
 import { Icon } from '../../ui/Icon';
 import { useObjectActions } from './useObjectActions';
+import { ZONE_STYLE } from '../editor/ZoneShape';
 
 /** Mobile container for the properties panel: a header with quick actions that expands upward. */
 export function BottomSheet({ children }: { children: ReactNode }) {
@@ -13,11 +14,14 @@ export function BottomSheet({ children }: { children: ReactNode }) {
   const select = useUiStore((s) => s.select);
   const obj = useGardenStore((s) => s.garden?.objects.find((o) => o.id === selectedId));
   const gardenName = useGardenStore((s) => s.garden?.name ?? '');
+  const zone = useGardenStore((s) => s.garden?.zones.find((z) => z.id === selectedId));
   const actions = useObjectActions(obj?.id ?? null);
 
   const title = obj
     ? `${kindInfo(obj.kind).icon} ${obj.label}`
-    : selectedId === BOUNDARY_ID
+    : zone
+      ? `${ZONE_STYLE[zone.kind].label} zone`
+      : selectedId === BOUNDARY_ID
       ? 'Plot boundary'
       : `${gardenName} · settings`;
 

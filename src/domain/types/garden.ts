@@ -102,7 +102,7 @@ export interface GardenSettings {
   leafSeason: { fromMonth: Month; toMonth: Month };
   /** Fraction of light passing through a leafless deciduous crown. */
   leaflessTransmission: number;
-  hiddenGroups: ObjectGroup[];
+  hiddenGroups: (ObjectGroup | 'zones')[];
 }
 
 export interface Garden {

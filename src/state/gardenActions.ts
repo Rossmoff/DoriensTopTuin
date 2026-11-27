@@ -3,7 +3,7 @@
  * Kept free of React/zustand so they are trivially unit-testable.
  */
 import { nanoid } from 'nanoid';
-import type { Garden, GardenObject, GardenSettings, Geometry, Id, Vec2 } from '../domain/types';
+import type { Garden, GardenObject, GardenSettings, Geometry, Id, ManualZone, Vec2 } from '../domain/types';
 import { translateGeometry } from '../domain/geometry';
 
 export const addObject = (g: Garden, obj: GardenObject): Garden => ({ ...g, objects: [...g.objects, obj] });
@@ -69,6 +69,15 @@ export function rotateObject(g: Garden, id: Id, deltaDeg: number): Garden {
   }
   return g;
 }
+
+export const addZone = (g: Garden, z: ManualZone): Garden => ({ ...g, zones: [...g.zones, z] });
+
+export const updateZone = (g: Garden, id: Id, patch: Partial<ManualZone>): Garden => ({
+  ...g,
+  zones: g.zones.map((z) => (z.id === id ? { ...z, ...patch } : z)),
+});
+
+export const deleteZone = (g: Garden, id: Id): Garden => ({ ...g, zones: g.zones.filter((z) => z.id !== id) });
 
 export const setBoundary = (g: Garden, boundary: Vec2[]): Garden => ({ ...g, boundary });
 
