@@ -7,6 +7,7 @@ import { useUiStore } from '../../state/uiStore';
 import { NumberField } from '../../ui/NumberField';
 import { ALL_COLOURS, CATEGORY_LABEL, SUN_LABEL } from './plantDisplay';
 import { MonthChips } from './MonthChips';
+import { PlantThumb } from './PlantThumb';
 import { usePlantUi } from './plantUiStore';
 
 export function newPlantDraft(): Plant {
@@ -25,6 +26,19 @@ export function newPlantDraft(): Plant {
     source: 'user',
     approximate: true,
   };
+}
+
+/** Centre-crop and shrink a photo to a small square data URL (kept on this device). */
+async function shrinkPhoto(file: File, size = 200): Promise<string> {
+  const bmp = await createImageBitmap(file);
+  const s = Math.min(bmp.width, bmp.height);
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  canvas.getContext('2d')!.drawImage(bmp, (bmp.width - s) / 2, (bmp.height - s) / 2, s, s, 0, 0, size, size);
+  bmp.close();
+  const webp = canvas.toDataURL('image/webp', 0.75);
+  return webp.startsWith('data:image/webp') ? webp : canvas.toDataURL('image/jpeg', 0.8);
 }
 
 function toggle<T>(list: T[], v: T): T[] {
@@ -106,6 +120,33 @@ function Editor({ initial, close }: { initial: Plant; close: () => void }) {
             ))}
           </select>
         </label>
+
+        <h3>Photo</h3>
+        <div className="photo-edit">
+          <PlantThumb plant={p} size={88} />
+          <div className="actions">
+            <label className="btn">
+              Take or choose a photo
+              <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                hidden
+                data-testid="plant-photo-input"
+                onChange={async (e) => {
+                  const f = e.target.files?.[0];
+                  if (f) up({ photo: await shrinkPhoto(f) });
+                  e.target.value = '';
+                }}
+              />
+            </label>
+            {p.photo && (
+              <button type="button" className="btn" onClick={() => up({ photo: undefined })}>
+                Remove my photo
+              </button>
+            )}
+          </div>
+        </div>
 
         <h3>Growing needs</h3>
         <Checks<SunNeed> label="Light" options={(Object.keys(SUN_LABEL) as SunNeed[]).map((k) => [k, SUN_LABEL[k]])} value={p.needs.sun} onChange={(sun) => needs({ sun })} />

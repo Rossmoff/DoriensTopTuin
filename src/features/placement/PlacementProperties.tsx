@@ -7,7 +7,8 @@ import { usePlantStore } from '../../state/plantStore';
 import { Icon } from '../../ui/Icon';
 import { NumberField } from '../../ui/NumberField';
 import { useObjectActions } from '../panels/useObjectActions';
-import { CATEGORY_LABEL, plantColour } from '../plants/plantDisplay';
+import { CATEGORY_LABEL } from '../plants/plantDisplay';
+import { PlantThumb } from '../plants/PlantThumb';
 import { usePlantUi } from '../plants/plantUiStore';
 import { SpotSummary } from '../plants/SpotSummary';
 import { useSpot, type SpotTarget } from '../plants/useSpot';
@@ -28,7 +29,7 @@ export function PlacementProperties({ placement }: { placement: PlantPlacement }
   return (
     <div className="panel" data-testid="placement-properties">
       <h2>
-        <i className="swatch round" style={{ background: plant ? plantColour(plant) : '#999' }} /> {plant?.names.en ?? 'Unknown plant'}
+        <PlantThumb plant={plant} size={40} /> {plant?.names.en ?? 'Unknown plant'}
       </h2>
       {plant && (
         <p className="subtitle">

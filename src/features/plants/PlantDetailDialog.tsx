@@ -4,6 +4,7 @@ import { builtinPlant } from '../../plantSource/LocalPlantSource';
 import { CATEGORY_LABEL, SUN_LABEL } from './plantDisplay';
 import { MonthChips } from './MonthChips';
 import { PlantBadges } from './PlantRow';
+import { PhotoCredit, PlantThumb } from './PlantThumb';
 import { usePlantUi } from './plantUiStore';
 import { startPlacing } from '../placement/startPlacing';
 import { useUiStore } from '../../state/uiStore';
@@ -26,11 +27,16 @@ export function PlantDetailDialog() {
   return (
     <div className="dialog-backdrop" onClick={close}>
       <div className="dialog plant-detail" role="dialog" aria-label={plant.names.en} onClick={(e) => e.stopPropagation()} data-testid="plant-detail">
-        <h2>{plant.names.en}</h2>
-        <p className="subtitle">
-          {plant.names.nl} · <i>{plant.names.latin}</i> · {CATEGORY_LABEL[plant.category]}
-        </p>
-        <PlantBadges plant={plant} />
+        <div className="detail-head">
+          <PlantThumb plant={plant} size={112} />
+          <div>
+            <h2>{plant.names.en}</h2>
+            <p className="subtitle">
+              {plant.names.nl} · <i>{plant.names.latin}</i> · {CATEGORY_LABEL[plant.category]}
+            </p>
+            <PlantBadges plant={plant} />
+          </div>
+        </div>
 
         {s && (
           <div className={`match ${s.group}`}>
@@ -135,6 +141,7 @@ export function PlantDetailDialog() {
           </p>
         )}
         {plant.notes && <p>{plant.notes}</p>}
+        <PhotoCredit plant={plant} />
         <p className="hint">Data is approximate{plant.source === 'user' ? ' (your own plant)' : plant.edited ? ' (edited by you)' : ''}.</p>
 
         <div className="actions">

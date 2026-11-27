@@ -4,7 +4,7 @@ import { footprintPolygons, pointInPolygon } from '../../domain/geometry';
 import { useGardenStore } from '../../state/gardenStore';
 import { usePlantStore } from '../../state/plantStore';
 import { useUiStore } from '../../state/uiStore';
-import { plantColour } from './plantDisplay';
+import { PlantThumb } from './PlantThumb';
 import { PlantSuggestions } from './PlantSuggestions';
 import { SpotSummary } from './SpotSummary';
 import { useSpot, type SpotTarget } from './useSpot';
@@ -32,7 +32,7 @@ export function BedPlants({ bed }: { bed: PlantingArea }) {
               return (
                 <li key={pl.id}>
                   <button className="btn" onClick={() => useUiStore.getState().select(pl.id)}>
-                    <i className="swatch round" style={{ background: pp ? plantColour(pp) : '#999' }} /> {pp?.names.en ?? '?'}
+                    <PlantThumb plant={pp} size={32} /> {pp?.names.en ?? '?'}
                     <span className="meta">×{pl.quantity}</span>
                   </button>
                 </li>

@@ -8,6 +8,7 @@ import { useUiStore } from '../../state/uiStore';
 import { Icon } from '../../ui/Icon';
 import { COLOUR_CSS, MONTH_NAMES, MONTH_SHORT } from '../plants/plantDisplay';
 import { downloadBlob } from '../plans/fileActions';
+import { PlantThumb } from '../plants/PlantThumb';
 
 function cellBackground(colours: string[]): string {
   const css = colours.map((c) => COLOUR_CSS[c as keyof typeof COLOUR_CSS] ?? '#7cb35b');
@@ -63,7 +64,7 @@ function BloomTable() {
             {cal.rows.map((r) => (
               <tr key={r.plant.id}>
                 <th>
-                  {r.plant.names.en}
+                  <PlantThumb plant={r.plant} size={22} /> {r.plant.names.en}
                   <small> ×{r.quantity}</small>
                 </th>
                 {MONTHS.map((m) => {
@@ -126,7 +127,7 @@ function VegTable() {
             {rows.map((r) => (
               <tr key={r.plant.id}>
                 <th>
-                  {r.plant.names.en}
+                  <PlantThumb plant={r.plant} size={22} /> {r.plant.names.en}
                   <small> ×{r.quantity}</small>
                 </th>
                 {MONTHS.map((m) => (

@@ -1,6 +1,6 @@
 import type { Plant } from '../../domain/types';
 import type { Suitability } from '../../domain/plants';
-import { plantColour } from './plantDisplay';
+import { PlantThumb } from './PlantThumb';
 import { usePlantUi } from './plantUiStore';
 import { useUiStore } from '../../state/uiStore';
 import { useGardenStore } from '../../state/gardenStore';
@@ -32,7 +32,7 @@ export function PlantRow({ plant, suitability }: { plant: Plant; suitability?: S
   return (
     <li className={`plant-row ${suitability?.group ?? ''}`} data-testid={`plant-${plant.id}`}>
       <button className="plant-main" onClick={open}>
-        <i className="swatch round" style={{ background: plantColour(plant) }} />
+        <PlantThumb plant={plant} />
         <span className="names">
           <strong>{plant.names.en}</strong>
           <small>

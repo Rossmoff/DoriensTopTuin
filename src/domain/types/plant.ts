@@ -48,6 +48,8 @@ export interface Plant {
   toxicity: { children: boolean; pets: boolean; note?: string };
   /** For builtin plants edited by the user. */
   edited?: boolean;
+  /** User's own photo (small data URL); overrides the builtin photo. */
+  photo?: string;
   source: 'builtin' | 'user';
   approximate: boolean;
   notes?: string;

@@ -23,6 +23,7 @@ export function AboutDialog() {
           <li>Tap to select, then drag the selected object to move it.</li>
           <li>Long-press an object for duplicate, rotate, lock and delete.</li>
         </ul>
+        <p className="hint">Plant photos come from Wikimedia Commons under free licences; each plant's details name the photographer and licence.</p>
         <p className="hint">Plans are stored on this device only. Use Export JSON to move a plan to another device.</p>
         <div className="actions">
           <button className="btn primary" onClick={() => setDialog(null)}>

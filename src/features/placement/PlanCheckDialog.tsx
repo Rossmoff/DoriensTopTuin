@@ -2,7 +2,7 @@ import { useGardenStore } from '../../state/gardenStore';
 import { usePlantStore } from '../../state/plantStore';
 import { useUiStore } from '../../state/uiStore';
 import { Icon } from '../../ui/Icon';
-import { plantColour } from '../plants/plantDisplay';
+import { PlantThumb } from '../plants/PlantThumb';
 import { usePlanWarnings, warningsByPlacement } from './usePlanWarnings';
 
 /** All warnings for placed plants, grouped per plant; tap one to select it on the plan. */
@@ -42,7 +42,7 @@ export function PlanCheckDialog() {
                 return (
                   <li key={id}>
                     <button className="btn plan-check-item" onClick={() => show(id)}>
-                      <i className="swatch round" style={{ background: plant ? plantColour(plant) : '#999' }} />
+                      <PlantThumb plant={plant} size={36} />
                       <span>
                         <strong>
                           {plant?.names.en ?? 'Unknown plant'}
