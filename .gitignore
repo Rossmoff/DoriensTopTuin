@@ -1,0 +1,10 @@
+node_modules
+dist
+dev-dist
+test-results
+playwright-report
+*.local
+.DS_Store
+# Exported garden plans can contain your home layout; keep them out of the public repo.
+*.tuin.json
+scripts/.tmp
