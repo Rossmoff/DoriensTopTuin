@@ -68,7 +68,10 @@ OVERRIDES = {
     'strawberry': ['Garden strawberry'],
     'raspberry': ['Rubus idaeus'],
     'blueberry': ['Vaccinium corymbosum'],
+    'asparagus': ['Asparagus', 'White asparagus', 'Asparagus officinalis'],
 }
+
+CACHE = ROOT / 'node_modules/.cache/plant-photos-api.json'
 
 
 def clean(name: str) -> str:
@@ -172,6 +175,22 @@ def file_info(files: list[str]) -> dict[str, dict]:
     return info
 
 
+def image_url(thumb: str) -> str:
+    """Commons may hand out thumb.wikimedia.org URLs with tracking parameters; the same file is
+    served from upload.wikimedia.org under the same path."""
+    u = urllib.parse.urlsplit(html.unescape(thumb))
+    return urllib.parse.urlunsplit(('https', 'upload.wikimedia.org', u.path, '', ''))
+
+
+def load_cache() -> dict:
+    return json.loads(CACHE.read_text()) if CACHE.exists() else {'pages': {}, 'files': {}}
+
+
+def save_cache(c: dict) -> None:
+    CACHE.parent.mkdir(parents=True, exist_ok=True)
+    CACHE.write_text(json.dumps(c))
+
+
 def make_thumb(raw: bytes, dest: Path) -> None:
     im = Image.open(io.BytesIO(raw))
     im.load()
@@ -193,6 +212,7 @@ def main() -> None:
     todo = [p for p in plants if (only is None or p['id'] in only) and (force or p['id'] not in credits or not (OUT_DIR / f"{p['id']}.webp").exists())]
     print(f'{len(todo)} plants to fetch', flush=True)
 
+    cache = load_cache()
     chosen: dict[str, str] = {}
     pending = {p['id']: candidates(p) for p in todo}
     level = 0
@@ -200,7 +220,13 @@ def main() -> None:
         titles = sorted({c[level] for c in pending.values() if len(c) > level})
         if not titles:
             break
-        imgs = page_images(titles)
+        new = [t for t in titles if t not in cache['pages']]
+        if new:
+            got = page_images(new)
+            for t in new:
+                cache['pages'][t] = got.get(t)
+            save_cache(cache)
+        imgs = {t: cache['pages'][t] for t in titles if cache['pages'].get(t)}
         for pid in list(pending):
             c = pending[pid]
             if len(c) > level and c[level] in imgs:
@@ -209,14 +235,18 @@ def main() -> None:
         level += 1
     print(f'images found for {len(chosen)}; none for: {sorted(pending)}', flush=True)
 
-    infos = file_info(sorted(set(chosen.values())))
+    need = sorted(f for f in set(chosen.values()) if f not in cache['files'])
+    if need:
+        cache['files'].update(file_info(need))
+        save_cache(cache)
+    infos = cache['files']
     for n, (pid, fname) in enumerate(sorted(chosen.items())):
         info = infos.get(fname)
         if not info or not info['thumb']:
             print(f'  {pid}: no Commons info for {fname}', flush=True)
             continue
         try:
-            raw = get(info['thumb'], binary=True)
+            raw = get(image_url(info['thumb']), binary=True)
             make_thumb(raw, OUT_DIR / f'{pid}.webp')
         except Exception as e:  # noqa: BLE001
             print(f'  {pid}: failed ({e})', flush=True)
