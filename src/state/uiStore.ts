@@ -1,15 +1,16 @@
 import { create } from 'zustand';
-import type { GeometryType, Id, ObjectKind, Vec2, ZoneKind } from '../domain/types';
+import type { GeometryType, Id, Month, ObjectKind, Vec2, ZoneKind } from '../domain/types';
 
 export type Tool =
   | { type: 'select' }
   | { type: 'draw'; kind: ObjectKind; shape: GeometryType }
   | { type: 'boundary' }
   | { type: 'zone'; kind: ZoneKind }
+  | { type: 'place'; plantId: Id }
   | { type: 'measure' };
 
 export type Theme = 'light' | 'dark' | 'contrast';
-export type Dialog = 'plans' | 'new' | 'about' | null;
+export type Dialog = 'plans' | 'new' | 'about' | 'calendars' | 'check' | null;
 
 /** Stage transform: screen = world * scale + (x, y). */
 export interface View {
@@ -29,6 +30,9 @@ export interface UiState {
   setMode: (m: Mode) => void;
   setWalkPoint: (p: Vec2 | null) => void;
   tool: Tool;
+  /** Month shown by the bloom view (null = off). */
+  bloomMonth: Month | null;
+  setBloomMonth: (m: Month | null) => void;
   selectedId: Id | null;
   view: View;
   stageSize: { width: number; height: number };
@@ -68,6 +72,8 @@ export const useUiStore = create<UiState>()((set) => ({
   setMode: (mode) => set({ mode, walkPoint: null, selectedId: null, tool: { type: 'select' }, contextMenu: null, addMenuOpen: false }),
   setWalkPoint: (walkPoint) => set({ walkPoint }),
   tool: { type: 'select' },
+  bloomMonth: null,
+  setBloomMonth: (bloomMonth) => set({ bloomMonth }),
   selectedId: null,
   view: { scale: 20, x: 40, y: 40 },
   stageSize: { width: 800, height: 600 },

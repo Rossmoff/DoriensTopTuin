@@ -9,7 +9,7 @@ No accounts, no paid APIs, works offline, must work well on a phone in the garde
 - [x] Phase 1 — editor, touch support, save/load (IndexedDB + JSON), PWA shell
 - [x] Phase 2 — sun position, shadows, sun-hours heatmap (Web Worker), manual zones
 - [x] Phase 3 — site profile, plant database (195 plants), suitability matching, garden walk mode
-- [ ] Phase 4 — plant placement, warnings, bloom & vegetable calendars, export
+- [x] Phase 4 — plant placement, warnings, bloom & vegetable calendars, CSV/print export
 
 ## Commands
 ```bash
@@ -64,6 +64,12 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
   `PlantSuggestions` (Good/Possible/Unsuitable + filters), `PlantRow`, detail/editor/library
   dialogs (`plantUiStore`). `src/features/site/` — site profile and bed soil override forms.
 - `src/features/walk/WalkPanel.tsx` — read-only garden walk (`uiStore.mode === 'walk'`).
+- `src/domain/plants/placements.ts` — `placementRadius`, `plantTotals`, `bloomCalendar` (coverage +
+  gaps Mar–Oct), `vegCalendar`/`vegTasks`, `shoppingListCsv`; `warnings.ts` — `computeWarnings`.
+- `src/features/placement/` — `PlacementShape` (canvas circle; `placementStyle` for the bloom month),
+  `PlacementProperties`, `PlanCheckDialog`, `usePlanWarnings`, `startPlacing` (place tool; Done
+  returns to the bed that was selected). `src/features/calendars/` — `BloomBar` (month slider,
+  `uiStore.bloomMonth`), `CalendarsDialog` (bloom + vegetable tables, print, CSV).
 - `src/features/panels/` — properties panel (side panel ≥768 px, bottom sheet below).
 - `src/features/plans/`, `src/features/toolbar/` — plans dialog, new plan, import/export, top bar.
 
@@ -121,6 +127,19 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
   native). Vegetable beds list edibles first within each group.
 - Reasons: problems first (worst first, e.g. "prefers pH ≥ 6.5, this spot is ~5.0", "needs moist or
   wet soil, this spot is dry sand"), then positives. Rows show two; the detail dialog shows all.
+
+### Plant placement
+- `PlantPlacement` = plant + centre + quantity (+ spread override, note). Circle radius = spread/2
+  for one plant; a group of n at spacing d covers its area: r = max(spread/2, d·√(n/π)).
+- Placed plants live in the ground layer (shadows fall on them), coloured by first flower colour.
+- Warnings (`computeWarnings`): overlap when circles overlap by > 15% of the radii sum; poor
+  suitability (scored at the plant's point with the season sun map); bad companions within the
+  radii + 1 m; toxic to children/pets (`settings.toxicWarnings`, default both on); on a hard
+  surface/building/pond; outside the plot; plant deleted from the list. Warn = red ring, info = amber.
+- Bloom view and the sun bar are mutually exclusive. Month tint: in flower → flower colour; berries /
+  autumn colour → red; harvest → orange; evergreen or in-growth → muted green; dormant → grey.
+- Phone toolbar: Redo, Measure and Bloom move into the ⋮ menu below 768 px (the bar must never
+  overflow; an e2e test checks `scrollWidth <= innerWidth`).
 
 ### Konva gotchas found so far
 - Closed `Line` without fill still fills on the hit canvas → set `fillEnabled={false}` for outlines.

@@ -3,7 +3,8 @@
 A garden planner that runs in the browser and installs on a phone. Draw the garden to scale,
 see sun and shade at any time of year, and get plant suggestions for each spot.
 
-**Status:** phase 1 of 4 — the layout editor works (draw, edit, save, export, offline).
+**Status:** all four phases done: layout editor, sun & shade, plant advice, plant placement with
+warnings and bloom/vegetable calendars. Live at https://rossmoff.github.io/DoriensTopTuin/.
 
 ## Run it
 ```bash

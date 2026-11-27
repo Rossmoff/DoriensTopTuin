@@ -51,6 +51,7 @@ export function createGarden(opts: { name: string; width?: number; length?: numb
       leafSeason: { fromMonth: 5, toMonth: 10 },
       leaflessTransmission: 0.7,
       hiddenGroups: [],
+      toxicWarnings: { children: true, pets: true },
     },
   };
 }

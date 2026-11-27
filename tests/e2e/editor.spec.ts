@@ -26,7 +26,10 @@ test('undo and redo', async ({ page, isMobile }) => {
   await expect.poll(async () => (await storedGardens(page))[0]?.objects.length).toBe(1);
   await page.getByTestId('undo').click();
   await expect.poll(async () => (await storedGardens(page))[0]?.objects.length).toBe(0);
-  await page.getByTestId('redo').click();
+  if (isMobile) {
+    await page.getByTestId('more-button').click();
+    await page.getByRole('menuitem', { name: 'Redo' }).click();
+  } else await page.getByTestId('redo').click();
   await expect.poll(async () => (await storedGardens(page))[0]?.objects.length).toBe(1);
 });
 
@@ -91,9 +94,10 @@ test.describe('mobile only', () => {
     await expect.poll(async () => (await storedGardens(page))[0]?.objects.length).toBe(2);
   });
 
-  test('tap targets are at least 44px', async ({ page }) => {
+  test('toolbar fits the screen and tap targets are at least 44px', async ({ page }) => {
     await createGarden(page);
-    for (const id of ['add-button', 'measure-button', 'undo', 'more-button', 'sheet-toggle']) {
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    for (const id of ['add-button', 'undo', 'walk-button', 'sun-button', 'more-button', 'sheet-toggle']) {
       const b = (await page.getByTestId(id).boundingBox())!;
       expect(b.height, id).toBeGreaterThanOrEqual(44);
       expect(b.width, id).toBeGreaterThanOrEqual(44);

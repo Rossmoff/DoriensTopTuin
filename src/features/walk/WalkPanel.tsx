@@ -3,11 +3,9 @@ import { useUiStore } from '../../state/uiStore';
 import { PlantSuggestions } from '../plants/PlantSuggestions';
 import { SpotSummary } from '../plants/SpotSummary';
 import { useSpot, type SpotTarget } from '../plants/useSpot';
-import { useSeasonSunMap } from '../sun/useSunHoursJob';
 
 /** Read-only "garden walk": tap a spot, see its sun hours, soil and the plants that suit it. */
 export function WalkPanel() {
-  useSeasonSunMap(true);
   const p = useUiStore((s) => s.walkPoint);
   const target = useMemo<SpotTarget | null>(() => (p ? { kind: 'point', p } : null), [p]);
   const info = useSpot(target);

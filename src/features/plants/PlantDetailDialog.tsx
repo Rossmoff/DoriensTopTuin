@@ -5,6 +5,8 @@ import { CATEGORY_LABEL, SUN_LABEL } from './plantDisplay';
 import { MonthChips } from './MonthChips';
 import { PlantBadges } from './PlantRow';
 import { usePlantUi } from './plantUiStore';
+import { startPlacing } from '../placement/startPlacing';
+import { useUiStore } from '../../state/uiStore';
 
 const GROUP_LABEL = { good: 'Good match', possible: 'Possible', unsuitable: 'Unsuitable' };
 
@@ -13,6 +15,7 @@ export function PlantDetailDialog() {
   const set = usePlantUi((s) => s.set);
   const plants = usePlantStore((s) => s.plants);
   const remove = usePlantStore((s) => s.remove);
+  const canPlace = useUiStore((s) => s.mode === 'edit');
   const plant = plants.find((p) => p.id === detail?.id);
   if (!detail || !plant) return null;
   const close = () => set({ detail: null });
@@ -135,7 +138,12 @@ export function PlantDetailDialog() {
         <p className="hint">Data is approximate{plant.source === 'user' ? ' (your own plant)' : plant.edited ? ' (edited by you)' : ''}.</p>
 
         <div className="actions">
-          <button className="btn primary" onClick={() => set({ editing: structuredClone(plant), detail: null })} data-testid="edit-plant">
+          {canPlace && (
+            <button className="btn primary" onClick={() => startPlacing(plant.id)} data-testid="detail-place">
+              Place on plan
+            </button>
+          )}
+          <button className="btn" onClick={() => set({ editing: structuredClone(plant), detail: null })} data-testid="edit-plant">
             Edit
           </button>
           {plant.edited && builtinPlant(plant.id) && (

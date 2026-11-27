@@ -102,7 +102,9 @@ export interface GardenSettings {
   leafSeason: { fromMonth: Month; toMonth: Month };
   /** Fraction of light passing through a leafless deciduous crown. */
   leaflessTransmission: number;
-  hiddenGroups: (ObjectGroup | 'zones')[];
+  hiddenGroups: (ObjectGroup | 'zones' | 'plants')[];
+  /** Warn about placed plants that are toxic to children and/or pets. */
+  toxicWarnings?: { children: boolean; pets: boolean };
 }
 
 export interface Garden {

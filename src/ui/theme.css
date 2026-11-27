@@ -169,6 +169,16 @@ textarea {
 }
 .topbar .spacer {
   flex: 1;
+  min-width: 0;
+}
+.topbar {
+  overflow: hidden;
+}
+.topbar > .btn {
+  flex-shrink: 0;
+}
+.only-narrow-block {
+  display: none;
 }
 .main {
   position: relative;
@@ -939,6 +949,238 @@ button.month {
   filter: brightness(0.85);
 }
 
+/* ---------- Placement, warnings, calendars ---------- */
+.plant-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+.plant-row .plant-meta {
+  grid-column: 1 / -1;
+}
+.plant-row .place {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.warnings {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0;
+}
+.warnings li {
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-size: 14px;
+}
+.warnings li.warn,
+.check-list .w.warn {
+  background: #fde0dc;
+  color: #5e140d;
+}
+.warnings li.info,
+.check-list .w.info {
+  background: #fff3c4;
+  color: #4d3d00;
+}
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.plan-check-item {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  white-space: normal;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 8px 4px;
+}
+.plan-check-item > span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.check-list .w {
+  font-size: 13px;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.warn-btn {
+  color: #b3261e;
+  font-weight: 700;
+}
+.bloom-bar .month-name {
+  min-width: 40px;
+  font-size: 18px;
+}
+.bloom-bar .status {
+  font-size: 13px;
+  color: var(--text);
+}
+.bloom-bar .status .btn {
+  margin-left: auto;
+}
+.gap-note {
+  color: #9a5b00;
+  font-weight: 600;
+}
+.cal-wrap {
+  overflow-x: auto;
+  margin: 8px 0;
+}
+.cal {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 480px;
+  font-size: 13px;
+}
+.cal th,
+.cal td {
+  border: 1px solid var(--border);
+  padding: 0;
+  height: 28px;
+  text-align: center;
+}
+.cal tbody th {
+  text-align: left;
+  padding: 2px 6px;
+  font-weight: 500;
+  white-space: nowrap;
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cal tbody th small {
+  color: var(--text-muted);
+}
+.cal td {
+  min-width: 26px;
+  position: relative;
+}
+.cal .fill {
+  position: absolute;
+  inset: 3px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.cal .fill.berries,
+.berries-swatch {
+  background: repeating-linear-gradient(45deg, #c0392b 0 4px, #f3c1bb 4px 8px);
+}
+.cal .coverage td {
+  height: 44px;
+  vertical-align: bottom;
+}
+.cal .coverage .bar {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 0;
+  background: var(--accent);
+  opacity: 0.35;
+  border-radius: 3px 3px 0 0;
+}
+.cal .coverage span {
+  position: relative;
+  font-weight: 700;
+}
+.cal .coverage td.gap {
+  background: repeating-linear-gradient(45deg, #fff3c4 0 6px, #fde9a6 6px 12px);
+}
+.cal .now {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.cal .marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  padding: 2px;
+}
+.mark {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.mark.sow-in {
+  background: #8e5bc4;
+}
+.mark.sow-out {
+  background: #4f7fe0;
+}
+.mark.plant-out {
+  background: #2f8a3a;
+}
+.mark.harvest {
+  background: #e08a00;
+  border-radius: 2px;
+}
+.legend-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+.dialog.calendars {
+  width: min(760px, 100%);
+}
+.planted-here {
+  margin-bottom: 8px;
+}
+.print-only {
+  display: none;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable,
+  .printable * {
+    visibility: visible;
+  }
+  .printable {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    box-shadow: none;
+    border: none;
+  }
+  .dialog-backdrop {
+    background: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block;
+  }
+  .cal-wrap {
+    overflow: visible;
+  }
+}
+
 /* ---------- Responsive ---------- */
 .only-narrow {
   display: none !important;
@@ -949,6 +1191,16 @@ button.month {
   }
   .only-narrow {
     display: inline-flex !important;
+  }
+  .only-narrow-block {
+    display: flex;
+    flex-direction: column;
+  }
+  .topbar .plan-name span {
+    display: none;
+  }
+  .topbar .sep {
+    margin: 6px 0;
   }
   .topbar .plan-name {
     max-width: 34vw;

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import type { Month } from '../../domain/types';
 import { useGardenStore } from '../../state/gardenStore';
 import { useUiStore, type Theme } from '../../state/uiStore';
 import { Icon } from '../../ui/Icon';
@@ -7,6 +8,8 @@ import { exportJson, exportPng, importJsonFile, pickFile } from '../plans/fileAc
 import { AddMenu } from './AddMenu';
 import { useSunStore } from '../../state/sunStore';
 import { usePlantUi } from '../plants/plantUiStore';
+import { usePlanWarnings } from '../placement/usePlanWarnings';
+import { exportShoppingList } from '../calendars/CalendarsDialog';
 
 const THEMES: { id: Theme; label: string }[] = [
   { id: 'light', label: 'Light' },
@@ -55,7 +58,7 @@ export function TopBar() {
       <button className="btn icon ghost" onClick={undo} disabled={!canUndo} aria-label="Undo" title="Undo (Ctrl+Z)" data-testid="undo">
         <Icon name="undo" />
       </button>
-      <button className="btn icon ghost" onClick={redo} disabled={!canRedo} aria-label="Redo" title="Redo (Ctrl+Shift+Z)" data-testid="redo">
+      <button className="btn icon ghost only-wide" onClick={redo} disabled={!canRedo} aria-label="Redo" title="Redo (Ctrl+Shift+Z)" data-testid="redo">
         <Icon name="redo" />
       </button>
       <div className="sep" />
@@ -78,7 +81,7 @@ export function TopBar() {
         <Icon name="plus" /> <span className="only-wide">Add</span>
       </button>
       <button
-        className={`btn ghost ${tool.type === 'measure' ? 'active' : ''}`}
+        className={`btn ghost only-wide ${tool.type === 'measure' ? 'active' : ''}`}
         onClick={() => {
           useDrawStore.getState().reset();
           setTool(tool.type === 'measure' ? { type: 'select' } : { type: 'measure' });
@@ -103,7 +106,9 @@ export function TopBar() {
         <Icon name="walk" /> <span className="only-wide">{walk ? 'Done' : 'Walk'}</span>
       </button>
       <SunToggle />
+      {!walk && <BloomToggle className="only-wide" />}
       <div className="spacer" />
+      <WarningsButton />
       <button ref={moreRef} className="btn icon ghost" onClick={() => setMoreOpen(!moreOpen)} aria-label="More" aria-haspopup="menu" data-testid="more-button">
         <Icon name="more" />
       </button>
@@ -118,6 +123,35 @@ export function TopBar() {
             role="menu"
             data-testid="more-menu"
           >
+            {!walk && (
+              <div className="only-narrow-block">
+                <button className="btn" role="menuitem" onClick={more(redo)} disabled={!canRedo}>
+                  <Icon name="redo" /> Redo
+                </button>
+                <button
+                  className="btn"
+                  role="menuitem"
+                  onClick={more(() => {
+                    useDrawStore.getState().reset();
+                    setTool({ type: 'measure' });
+                  })}
+                >
+                  <Icon name="ruler" /> Measure
+                </button>
+                <button
+                  className="btn"
+                  role="menuitem"
+                  data-testid="menu-bloom"
+                  onClick={more(() => {
+                    useSunStore.getState().set({ view: 'off', playing: false, probe: null });
+                    useUiStore.getState().setBloomMonth((new Date().getMonth() + 1) as Month);
+                  })}
+                >
+                  <Icon name="flower" /> Bloom view
+                </button>
+                <hr />
+              </div>
+            )}
             <button className="btn" role="menuitem" onClick={more(() => setDialog('plans'))}>
               <Icon name="folder" /> Plans…
             </button>
@@ -127,7 +161,16 @@ export function TopBar() {
             <button className="btn" role="menuitem" onClick={more(() => usePlantUi.getState().set({ libraryOpen: true }))} data-testid="open-library">
               <Icon name="leaf" /> Plant library…
             </button>
+            <button className="btn" role="menuitem" onClick={more(() => setDialog('calendars'))} data-testid="menu-calendars">
+              <Icon name="calendar" /> Bloom &amp; vegetable calendars…
+            </button>
+            <button className="btn" role="menuitem" onClick={more(() => setDialog('check'))} data-testid="menu-check">
+              <Icon name="alert" /> Plan check…
+            </button>
             <hr />
+            <button className="btn" role="menuitem" disabled={!garden?.placements.length} onClick={more(exportShoppingList)}>
+              <Icon name="download" /> Export plant list (CSV)
+            </button>
             <button className="btn" role="menuitem" disabled={!garden} onClick={more(() => garden && exportJson(garden))} data-testid="export-json">
               <Icon name="download" /> Export JSON
             </button>
@@ -184,13 +227,51 @@ function SunToggle() {
   return (
     <button
       className={`btn ghost ${on ? 'active' : ''}`}
-      onClick={() => set(on ? { view: 'off', playing: false, probe: null } : { view: 'shadows' })}
+      onClick={() => {
+        if (!on) useUiStore.getState().setBloomMonth(null);
+        set(on ? { view: 'off', playing: false, probe: null } : { view: 'shadows' });
+      }}
       aria-pressed={on}
       aria-label="Sun and shade"
       title="Sun and shade"
       data-testid="sun-button"
     >
       <Icon name="sun" /> <span className="only-wide">Sun</span>
+    </button>
+  );
+}
+
+function BloomToggle({ className = '' }: { className?: string }) {
+  const month = useUiStore((s) => s.bloomMonth);
+  const on = month !== null;
+  return (
+    <button
+      className={`btn ghost ${className} ${on ? 'active' : ''}`}
+      onClick={() => {
+        if (on) useUiStore.getState().setBloomMonth(null);
+        else {
+          useSunStore.getState().set({ view: 'off', playing: false, probe: null });
+          const now = new Date().getMonth() + 1;
+          useUiStore.getState().setBloomMonth(now as Month);
+        }
+      }}
+      aria-pressed={on}
+      aria-label="Bloom view"
+      title="Bloom view: what flowers when"
+      data-testid="bloom-button"
+    >
+      <Icon name="flower" /> <span className="only-wide">Bloom</span>
+    </button>
+  );
+}
+
+function WarningsButton() {
+  const warnings = usePlanWarnings();
+  const n = warnings.filter((w) => w.severity === 'warn').length;
+  if (n === 0) return null;
+  return (
+    <button className="btn ghost warn-btn" onClick={() => useUiStore.getState().setDialog('check')} aria-label={`${n} plan warnings`} title="Plan check" data-testid="warnings-button">
+      <Icon name="alert" /> {n}
     </button>
   );
 }

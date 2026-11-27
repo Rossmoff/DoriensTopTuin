@@ -13,8 +13,9 @@ export function ContextMenu() {
     if (m && Date.now() - (m.openedAt ?? 0) > 500) close();
   };
   const obj = useGardenStore((s) => s.garden?.objects.find((o) => o.id === menu?.objectId));
-  const actions = useObjectActions(obj?.id ?? null);
-  if (!menu || !obj) return null;
+  const placement = useGardenStore((s) => s.garden?.placements.find((p) => p.id === menu?.objectId));
+  const actions = useObjectActions(obj?.id ?? placement?.id ?? null);
+  if (!menu || (!obj && !placement)) return null;
 
   const left = Math.min(menu.screen.x, window.innerWidth - 240);
   const top = Math.max(8, Math.min(menu.screen.y + 16, window.innerHeight - 400));
@@ -22,6 +23,24 @@ export function ContextMenu() {
     fn();
     close();
   };
+  if (!obj) {
+    return (
+      <>
+        <div className="backdrop" onClick={closeFromBackdrop} />
+        <div className="popover menu" style={{ left, top, position: 'fixed' }} role="menu" data-testid="context-menu">
+          <button className="btn" role="menuitem" onClick={run(actions.showProperties)}>
+            Properties…
+          </button>
+          <button className="btn" role="menuitem" onClick={run(actions.duplicate)}>
+            <Icon name="copy" /> Duplicate
+          </button>
+          <button className="btn danger" role="menuitem" onClick={run(actions.remove)}>
+            <Icon name="trash" /> Remove plant
+          </button>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="backdrop" onClick={closeFromBackdrop} onContextMenu={(e) => (e.preventDefault(), closeFromBackdrop())} />

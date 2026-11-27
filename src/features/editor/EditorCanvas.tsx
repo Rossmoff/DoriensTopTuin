@@ -22,7 +22,11 @@ import { isGroundLevel, paintOrder } from './zOrder';
 import { ZoneShape } from './ZoneShape';
 import { HeatmapLayer, ShadowLayer, SunArc } from '../sun/SunLayers';
 import { useSunStore } from '../../state/sunStore';
-import { updateZone } from '../../state/gardenActions';
+import { updatePlacement, updateZone } from '../../state/gardenActions';
+import { PlacementShape } from '../placement/PlacementLayer';
+import { usePlanWarnings } from '../placement/usePlanWarnings';
+import { usePlantStore } from '../../state/plantStore';
+import type { Vec2 as V2 } from '../../domain/types';
 
 Konva.hitOnDragEnabled = true;
 Konva.dragDistance = 4;
@@ -60,6 +64,15 @@ export function EditorCanvas() {
   const colors = useMemo(() => canvasColors(theme), [theme]);
   const sunView = useSunStore((s) => s.view);
   const sunResult = useSunStore((s) => s.result);
+  const plants = usePlantStore((s) => s.plants);
+  const bloomMonth = useUiStore((s) => s.bloomMonth);
+  const warnings = usePlanWarnings();
+  const plantById = useMemo(() => new Map(plants.map((p) => [p.id, p])), [plants]);
+  const warnLevel = useMemo(() => {
+    const m = new Map<string, 'warn' | 'info'>();
+    for (const w of warnings) if (m.get(w.placementId) !== 'warn') m.set(w.placementId, w.severity);
+    return m;
+  }, [warnings]);
 
   const dragCancelled = useRef(false);
   const pinch = useRef<{ dist: number; center: Vec2; view: typeof view } | null>(null);
@@ -95,6 +108,10 @@ export function EditorCanvas() {
     const ui = uiStore.getState();
     if (ui.tool.type === 'select' && ui.mode === 'edit') ui.select(id);
   }, []);
+  const onMovePlacement = useCallback(
+    (id: string, center: V2) => update((g) => updatePlacement(g, id, { center })),
+    [update],
+  );
   const onGeometry = useCallback(
     (id: string, g: Geometry) => update((gg) => setGeometry(gg, id, g)),
     [update],
@@ -316,6 +333,24 @@ export function EditorCanvas() {
               onGeometry={onGeometry}
             />
           ))}
+          {!hidden.has('plants') &&
+            garden.placements.map((pl) => (
+              <PlacementShape
+                key={pl.id}
+                placement={pl}
+                plant={plantById.get(pl.plantId)}
+                selected={pl.id === selectedId}
+                scale={view.scale}
+                colors={colors}
+                draggable={editable && (!coarse || pl.id === selectedId)}
+                snapStep={snapStep}
+                warning={warnLevel.get(pl.id) ?? null}
+                month={bloomMonth}
+                dragCancelled={dragCancelled}
+                onSelect={onSelect}
+                onMove={onMovePlacement}
+              />
+            ))}
         </Layer>
         {/* Separate canvas so animating the sun only redraws the shadows, not every object. */}
         <Layer listening={false}>

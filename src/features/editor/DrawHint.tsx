@@ -3,6 +3,7 @@ import type { GeometryType } from '../../domain/types';
 import { useUiStore } from '../../state/uiStore';
 import { useDrawStore } from './drawStore';
 import { ZONE_STYLE } from './ZoneShape';
+import { usePlantStore } from '../../state/plantStore';
 import * as drawing from './drawingController';
 
 const SHAPE_LABEL: Record<GeometryType, string> = { rect: 'Rectangle', polygon: 'Shape', polyline: 'Line', circle: 'Circle' };
@@ -12,11 +13,14 @@ export function DrawHint() {
   const tool = useUiStore((s) => s.tool);
   const setTool = useUiStore((s) => s.setTool);
   const points = useDrawStore((s) => s.points);
+  const placed = useDrawStore((s) => s.placedCount);
+  const placeName = usePlantStore((s) => (tool.type === 'place' ? s.plants.find((p) => p.id === tool.plantId)?.names.en : undefined));
   if (tool.type === 'select') return null;
 
   let text = '';
   let multi = false;
   if (tool.type === 'measure') text = 'Drag, or tap two points, to measure a distance.';
+  else if (tool.type === 'place') text = `Tap to place ${placeName ?? 'the plant'}${placed ? ` (${placed} placed)` : ''}. Tap again for more.`;
   else if (tool.type === 'zone') {
     text = `Tap the corners of the ${ZONE_STYLE[tool.kind].label.toLowerCase()} zone. Tap the first corner, or press Finish, to close.`;
     multi = true;
@@ -67,8 +71,8 @@ export function DrawHint() {
           </button>
         </>
       )}
-      <button className="btn" onClick={drawing.cancel}>
-        {tool.type === 'measure' ? 'Done' : 'Cancel'}
+      <button className="btn" onClick={drawing.cancel} data-testid="tool-done">
+        {tool.type === 'measure' || tool.type === 'place' ? 'Done' : 'Cancel'}
       </button>
     </div>
   );

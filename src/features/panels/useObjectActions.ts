@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { Id } from '../../domain/types';
-import { deleteObject, deleteZone, duplicateObject, reorderObject, rotateObject, updateObject } from '../../state/gardenActions';
+import { deleteObject, deletePlacement, deleteZone, duplicateObject, duplicatePlacement, reorderObject, rotateObject, updateObject } from '../../state/gardenActions';
 import { gardenStore } from '../../state/gardenStore';
 import { uiStore } from '../../state/uiStore';
 
@@ -10,6 +10,16 @@ export function objectActions(id: Id | null) {
   const ok = () => !!id && !!gardenStore.getState().garden?.objects.some((o) => o.id === id);
   return {
     duplicate: () => {
+      if (id && gardenStore.getState().garden?.placements.some((p) => p.id === id)) {
+        let newId: Id | null = null;
+        update((g) => {
+          const r = duplicatePlacement(g, id);
+          newId = r.newId;
+          return r.garden;
+        });
+        if (newId) uiStore.getState().select(newId);
+        return;
+      }
       if (!ok()) return;
       let newId: Id | null = null;
       update((g) => {
@@ -20,6 +30,11 @@ export function objectActions(id: Id | null) {
       if (newId) uiStore.getState().select(newId);
     },
     remove: () => {
+      if (id && gardenStore.getState().garden?.placements.some((p) => p.id === id)) {
+        update((g) => deletePlacement(g, id));
+        uiStore.getState().select(null);
+        return;
+      }
       if (id && gardenStore.getState().garden?.zones.some((z) => z.id === id)) {
         update((g) => deleteZone(g, id));
         uiStore.getState().select(null);

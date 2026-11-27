@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 import type { Geometry, Vec2 } from '../../domain/types';
 import { distance, snapPoint } from '../../domain/geometry';
 import { createObject, defaultGeometry } from '../../data/objectCatalog';
-import { addObject, addZone, setBoundary } from '../../state/gardenActions';
+import { addObject, addPlacement, addZone, setBoundary } from '../../state/gardenActions';
 import { gardenStore } from '../../state/gardenStore';
 import { uiStore } from '../../state/uiStore';
 import { useDrawStore } from './drawStore';
@@ -37,7 +37,7 @@ export function pointerDown(world: Vec2) {
     }
     return;
   }
-  if (tool.type === 'draw' || tool.type === 'boundary' || tool.type === 'zone') {
+  if (tool.type === 'draw' || tool.type === 'boundary' || tool.type === 'zone' || tool.type === 'place') {
     draw().set({ pressStart: snapped(world), cursor: snapped(world) });
   }
 }
@@ -63,6 +63,15 @@ export function pointerUp(world: Vec2) {
   if (!pressStart) return;
   const p = snapped(world);
   draw().set({ pressStart: null });
+
+  if (tool.type === 'place') {
+    // Each tap places one plant; the tool stays active until Done.
+    if (!isTap(pressStart, p)) return;
+    const placement = { id: nanoid(10), plantId: tool.plantId, center: p, quantity: 1 };
+    gardenStore.getState().update((g) => addPlacement(g, placement));
+    draw().set({ placedCount: draw().placedCount + 1 });
+    return;
+  }
 
   const multiPoint = tool.type === 'boundary' || tool.type === 'zone' || (tool.type === 'draw' && (tool.shape === 'polygon' || tool.shape === 'polyline'));
   if (multiPoint) {
@@ -161,8 +170,10 @@ export function undoPoint() {
 }
 
 export function cancel() {
+  const back = uiStore.getState().tool.type === 'place' ? draw().returnTo : null;
   draw().reset();
   uiStore.getState().setTool({ type: 'select' });
+  if (back) uiStore.getState().select(back);
 }
 
 /** Abort an in-progress press (e.g. when a second finger lands for pinch-zoom). */

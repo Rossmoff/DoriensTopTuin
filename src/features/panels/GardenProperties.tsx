@@ -52,7 +52,7 @@ export function GardenProperties() {
   const select = useUiStore((s) => s.select);
   const hidden = new Set(garden.settings.hiddenGroups);
 
-  const toggleGroup = (id: ObjectGroup | 'zones') => {
+  const toggleGroup = (id: ObjectGroup | 'zones' | 'plants') => {
     const next = hidden.has(id) ? garden.settings.hiddenGroups.filter((g) => g !== id) : [...garden.settings.hiddenGroups, id];
     update((g) => updateSettings(g, { hiddenGroups: next }));
   };
@@ -100,6 +100,27 @@ export function GardenProperties() {
       ))}
       <label className="check">
         <input type="checkbox" checked={!hidden.has('zones')} onChange={() => toggleGroup('zones')} /> Zones (shady / wet / extra dry)
+      </label>
+      <label className="check">
+        <input type="checkbox" checked={!hidden.has('plants')} onChange={() => toggleGroup('plants')} /> Placed plants
+      </label>
+
+      <h3>Plant warnings</h3>
+      <label className="check">
+        <input
+          type="checkbox"
+          checked={garden.settings.toxicWarnings?.children ?? true}
+          onChange={(e) => update((g) => updateSettings(g, { toxicWarnings: { children: e.target.checked, pets: g.settings.toxicWarnings?.pets ?? true } }))}
+        />{' '}
+        Warn about plants toxic to children
+      </label>
+      <label className="check">
+        <input
+          type="checkbox"
+          checked={garden.settings.toxicWarnings?.pets ?? true}
+          onChange={(e) => update((g) => updateSettings(g, { toxicWarnings: { pets: e.target.checked, children: g.settings.toxicWarnings?.children ?? true } }))}
+        />{' '}
+        Warn about plants toxic to pets
       </label>
 
       <SunSettings />

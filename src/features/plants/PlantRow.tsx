@@ -2,6 +2,9 @@ import type { Plant } from '../../domain/types';
 import type { Suitability } from '../../domain/plants';
 import { plantColour } from './plantDisplay';
 import { usePlantUi } from './plantUiStore';
+import { useUiStore } from '../../state/uiStore';
+import { useGardenStore } from '../../state/gardenStore';
+import { startPlacing } from '../placement/startPlacing';
 
 export function PlantBadges({ plant }: { plant: Plant }) {
   return (
@@ -23,6 +26,9 @@ export function PlantBadges({ plant }: { plant: Plant }) {
 
 export function PlantRow({ plant, suitability }: { plant: Plant; suitability?: Suitability }) {
   const open = () => usePlantUi.getState().set({ detail: { id: plant.id, suitability } });
+  const editMode = useUiStore((s) => s.mode === 'edit');
+  const hasGarden = useGardenStore((s) => !!s.garden);
+  const canPlace = editMode && hasGarden;
   return (
     <li className={`plant-row ${suitability?.group ?? ''}`} data-testid={`plant-${plant.id}`}>
       <button className="plant-main" onClick={open}>
@@ -39,6 +45,11 @@ export function PlantRow({ plant, suitability }: { plant: Plant; suitability?: S
           </span>
         )}
       </button>
+      {canPlace && (
+        <button className="btn icon ghost place" aria-label={`Place ${plant.names.en} on the plan`} title="Place on the plan" onClick={() => startPlacing(plant.id)} data-testid={`place-${plant.id}`}>
+          +
+        </button>
+      )}
       <div className="plant-meta">
         <PlantBadges plant={plant} />
         {suitability && suitability.reasons.length > 0 && <p className="reasons">{suitability.reasons.slice(0, 2).join(' · ')}</p>}

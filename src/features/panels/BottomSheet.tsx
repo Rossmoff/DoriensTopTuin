@@ -5,6 +5,7 @@ import { BOUNDARY_ID, useUiStore } from '../../state/uiStore';
 import { Icon } from '../../ui/Icon';
 import { useObjectActions } from './useObjectActions';
 import { ZONE_STYLE } from '../editor/ZoneShape';
+import { usePlantStore } from '../../state/plantStore';
 
 /** Mobile container for the properties panel: a header with quick actions that expands upward. */
 export function BottomSheet({ children }: { children: ReactNode }) {
@@ -15,6 +16,8 @@ export function BottomSheet({ children }: { children: ReactNode }) {
   const obj = useGardenStore((s) => s.garden?.objects.find((o) => o.id === selectedId));
   const gardenName = useGardenStore((s) => s.garden?.name ?? '');
   const zone = useGardenStore((s) => s.garden?.zones.find((z) => z.id === selectedId));
+  const placement = useGardenStore((s) => s.garden?.placements.find((p) => p.id === selectedId));
+  const placedName = usePlantStore((s) => (placement ? s.plants.find((p) => p.id === placement.plantId)?.names.en : undefined));
   const actions = useObjectActions(obj?.id ?? null);
 
   const walk = useUiStore((s) => s.mode === 'walk');
@@ -22,7 +25,9 @@ export function BottomSheet({ children }: { children: ReactNode }) {
     ? 'Garden walk'
     : obj
     ? `${kindInfo(obj.kind).icon} ${obj.label}`
-    : zone
+    : placement
+      ? `🌱 ${placedName ?? 'Plant'}${placement.quantity > 1 ? ` ×${placement.quantity}` : ''}`
+      : zone
       ? `${ZONE_STYLE[zone.kind].label} zone`
       : selectedId === BOUNDARY_ID
       ? 'Plot boundary'
@@ -35,12 +40,12 @@ export function BottomSheet({ children }: { children: ReactNode }) {
           <Icon name={expanded ? 'chevronDown' : 'chevronUp'} />
           <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</span>
         </button>
-        {obj && (
+        {(obj || placement) && (
           <>
             <button className="btn icon" onClick={actions.duplicate} aria-label="Duplicate">
               <Icon name="copy" />
             </button>
-            {obj.geometry.type !== 'circle' && (
+            {obj && obj.geometry.type !== 'circle' && (
               <button className="btn icon" onClick={() => actions.rotate(90)} aria-label="Rotate 90°">
                 <Icon name="rotate" />
               </button>

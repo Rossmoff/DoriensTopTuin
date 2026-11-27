@@ -16,13 +16,17 @@ import { useIsNarrow } from './ui/useMediaQuery';
 import { useKeyboard } from './useKeyboard';
 import { SunBar } from './features/sun/SunBar';
 import { SunProbe } from './features/sun/SunProbe';
-import { useSunHoursJob } from './features/sun/useSunHoursJob';
+import { useSeasonSunMap, useSunHoursJob } from './features/sun/useSunHoursJob';
+import { isPlantingKind } from './data/objectCatalog';
 import { useSunStore } from './state/sunStore';
 import { usePlantStore } from './state/plantStore';
 import { WalkPanel } from './features/walk/WalkPanel';
 import { PlantDetailDialog } from './features/plants/PlantDetailDialog';
 import { PlantEditorDialog } from './features/plants/PlantEditorDialog';
 import { PlantLibraryDialog } from './features/plants/PlantLibraryDialog';
+import { BloomBar } from './features/calendars/BloomBar';
+import { CalendarsDialog } from './features/calendars/CalendarsDialog';
+import { PlanCheckDialog } from './features/placement/PlanCheckDialog';
 
 function Toast() {
   const toast = useUiStore((s) => s.toast);
@@ -62,8 +66,18 @@ export function App() {
   const [ready, setReady] = useState(false);
   const sunView = useSunStore((s) => s.view);
   const mode = useUiStore((s) => s.mode);
+  const bloomMonth = useUiStore((s) => s.bloomMonth);
   useKeyboard();
   useSunHoursJob();
+  const selectedId = useUiStore((s) => s.selectedId);
+  const needsSeason = useGardenStore((s) => {
+    const g = s.garden;
+    if (!g) return false;
+    if (g.placements.length > 0) return true;
+    const sel = g.objects.find((o) => o.id === selectedId);
+    return !!sel && isPlantingKind(sel.kind);
+  });
+  useSeasonSunMap(needsSeason || mode === 'walk');
 
   useEffect(() => {
     const stop = startAutosave();
@@ -85,7 +99,7 @@ export function App() {
   return (
     <div className="app" data-theme={theme}>
       <TopBar />
-      <main className={`main ${narrow ? 'with-sheet' : ''} ${tool.type !== 'select' ? 'with-hint' : ''} ${sunView !== 'off' ? 'with-sunbar' : ''}`}>
+      <main className={`main ${narrow ? 'with-sheet' : ''} ${tool.type !== 'select' ? 'with-hint' : ''} ${sunView !== 'off' || bloomMonth !== null ? 'with-sunbar' : ''}`}>
         {garden && (
           <>
             <div className="canvas-area">
@@ -96,6 +110,7 @@ export function App() {
               <ZoomControls />
               {sunView !== 'off' && tool.type === 'select' && <SunProbe />}
               {sunView !== 'off' && <SunBar />}
+              {bloomMonth !== null && sunView === 'off' && <BloomBar />}
             </div>
             {narrow ? (
               <BottomSheet>{mode === 'walk' ? <WalkPanel /> : <PropertiesPanel />}</BottomSheet>
@@ -117,6 +132,8 @@ export function App() {
       {dialog === 'plans' && <PlansDialog />}
       {dialog === 'new' && <NewGardenDialog />}
       {dialog === 'about' && <AboutDialog />}
+      {dialog === 'calendars' && <CalendarsDialog />}
+      {dialog === 'check' && <PlanCheckDialog />}
       <ContextMenu />
       <PlantLibraryDialog />
       <PlantDetailDialog />

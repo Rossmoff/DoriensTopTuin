@@ -6,7 +6,10 @@ export function AboutDialog() {
     <div className="dialog-backdrop" onClick={() => setDialog(null)}>
       <div className="dialog" role="dialog" aria-label="About" onClick={(e) => e.stopPropagation()}>
         <h2>Dorien&apos;s Tuin Tafereel</h2>
-        <p>Plan the garden to scale. Sun and shade and plant advice come in the next phases.</p>
+        <p>
+          Plan the garden to scale, see sun and shade through the year, and find plants that suit each spot: tap a bed and open its
+          Plants tab, or use Walk to tap any spot. Place plants with “+”, then check the plan (⚠), the bloom view and the calendars.
+        </p>
         <h3>Mouse &amp; keyboard</h3>
         <ul className="hint">
           <li>Drag empty space to pan, scroll to zoom.</li>

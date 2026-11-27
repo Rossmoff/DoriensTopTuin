@@ -3,7 +3,7 @@
  * Kept free of React/zustand so they are trivially unit-testable.
  */
 import { nanoid } from 'nanoid';
-import type { Garden, GardenObject, GardenSettings, Geometry, Id, ManualZone, Vec2 } from '../domain/types';
+import type { Garden, GardenObject, GardenSettings, Geometry, Id, ManualZone, PlantPlacement, Vec2 } from '../domain/types';
 import { translateGeometry } from '../domain/geometry';
 
 export const addObject = (g: Garden, obj: GardenObject): Garden => ({ ...g, objects: [...g.objects, obj] });
@@ -78,6 +78,22 @@ export const updateZone = (g: Garden, id: Id, patch: Partial<ManualZone>): Garde
 });
 
 export const deleteZone = (g: Garden, id: Id): Garden => ({ ...g, zones: g.zones.filter((z) => z.id !== id) });
+
+export const addPlacement = (g: Garden, p: PlantPlacement): Garden => ({ ...g, placements: [...g.placements, p] });
+
+export const updatePlacement = (g: Garden, id: Id, patch: Partial<PlantPlacement>): Garden => ({
+  ...g,
+  placements: g.placements.map((p) => (p.id === id ? { ...p, ...patch } : p)),
+});
+
+export const deletePlacement = (g: Garden, id: Id): Garden => ({ ...g, placements: g.placements.filter((p) => p.id !== id) });
+
+export function duplicatePlacement(g: Garden, id: Id): { garden: Garden; newId: Id | null } {
+  const src = g.placements.find((p) => p.id === id);
+  if (!src) return { garden: g, newId: null };
+  const copy = { ...src, id: nanoid(10), center: { x: src.center.x + 0.5, y: src.center.y + 0.5 } };
+  return { garden: { ...g, placements: [...g.placements, copy] }, newId: copy.id };
+}
 
 export const setBoundary = (g: Garden, boundary: Vec2[]): Garden => ({ ...g, boundary });
 
