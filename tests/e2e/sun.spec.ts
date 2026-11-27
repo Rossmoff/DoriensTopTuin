@@ -18,16 +18,14 @@ test('shadow view: date presets, time slider and sun readout', async ({ page, is
   await expect(page.getByTestId('sun-readout')).toContainText(/6[12]° high, S/);
 });
 
-test('sun-hours map: bed shows its sun hours and a tapped spot shows an info card', async ({ page, isMobile }) => {
+test('sun-hours map: a tapped spot shows an info card', async ({ page, isMobile }) => {
   await createGarden(page);
   await addByTap(page, 'house', 0.5, 0.8, isMobile);
-  await addByTap(page, 'bed', 0.5, 0.45, isMobile);
-  if (isMobile) await page.getByTestId('sheet-toggle').click();
-  await page.getByTestId('show-sun-hours').click();
+  if (isMobile) await page.getByLabel('Deselect').click();
+  else await page.keyboard.press('Escape');
+  await page.getByTestId('sun-button').click();
+  await page.getByTestId('view-hours').click();
   await expect(page.getByTestId('sun-status')).toContainText('open sky', { timeout: 20_000 });
-  await expect(page.getByTestId('bed-sun-hours')).toContainText(/\d+\.\d h sun\/day \(Apr–Sep average\)/);
-  if (isMobile) await page.getByTestId('sheet-toggle').click();
-
   await tapCanvas(page, 0.42, 0.25, isMobile);
   await expect(page.getByTestId('probe-hours')).toHaveText(/\d+\.\d h/);
 });

@@ -24,6 +24,8 @@ const PATHS: Record<string, string> = {
   front: 'M8 8h12v12H8zM4 4h12v2M4 4v12h2',
   back: 'M4 4h12v12H4zM20 8v12H8v-2',
   polygon: 'M12 3l8 6-3 11H7L4 9z',
+  walk: 'M8 3c1.5 0 2 1.5 2 3.5S9 11 8 11 6 9 6 6.5 6.5 3 8 3zM7 13h2v3H7zM16 8c1.5 0 2 1.5 2 3.5S17 16 16 16s-2-2-2-4.5.5-3.5 2-3.5zM15 18h2v3h-2z',
+  leaf: 'M5 19c0-9 6-14 15-14 0 9-5 15-14 15M5 19l7-7',
 };
 
 export function Icon({ name, title }: { name: keyof typeof PATHS | string; title?: string }) {

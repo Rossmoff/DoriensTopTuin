@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import Konva from 'konva';
-import { Layer, Line, Stage } from 'react-konva';
+import { Circle, Group, Layer, Line, Stage } from 'react-konva';
 import type { KonvaEventObject } from 'konva/lib/Node';
 import type { Geometry, Vec2 } from '../../domain/types';
 import { bbox, geometryBBox, unionBBox } from '../../domain/geometry';
@@ -50,6 +50,8 @@ export function EditorCanvas() {
   const garden = useGardenStore((s) => s.garden)!;
   const update = useGardenStore((s) => s.update);
   const tool = useUiStore((s) => s.tool);
+  const mode = useUiStore((s) => s.mode);
+  const walkPoint = useUiStore((s) => s.walkPoint);
   const selectedId = useUiStore((s) => s.selectedId);
   const view = useUiStore((s) => s.view);
   const stageSize = useUiStore((s) => s.stageSize);
@@ -90,7 +92,8 @@ export function EditorCanvas() {
 
   // ---- callbacks for shapes ----
   const onSelect = useCallback((id: string) => {
-    if (uiStore.getState().tool.type === 'select') uiStore.getState().select(id);
+    const ui = uiStore.getState();
+    if (ui.tool.type === 'select' && ui.mode === 'edit') ui.select(id);
   }, []);
   const onGeometry = useCallback(
     (id: string, g: Geometry) => update((gg) => setGeometry(gg, id, g)),
@@ -173,6 +176,7 @@ export function EditorCanvas() {
     const p = worldPointer();
     if (!p) return;
     if (tool.type === 'select') {
+      if (uiStore.getState().mode === 'walk') return;
       const id = objIdOf(e.target);
       if (!id) return;
       const start = { x: e.evt.clientX, y: e.evt.clientY };
@@ -209,6 +213,15 @@ export function EditorCanvas() {
 
   const onStageTap = (e: KonvaEventObject<MouseEvent | TouchEvent | PointerEvent>) => {
     const fromSelect = toolAtDown.current === 'select' && uiStore.getState().tool.type === 'select';
+    if (uiStore.getState().mode === 'walk') {
+      const p = worldPointer();
+      if (p) {
+        uiStore.getState().setWalkPoint(p);
+        uiStore.getState().setSheetExpanded(true);
+        if (useSunStore.getState().view !== 'off') useSunStore.getState().set({ probe: p });
+      }
+      return;
+    }
     if (fromSelect && e.target === stageRef.current) uiStore.getState().select(null);
     // In sun views, a tap anywhere shows the sun info for that spot.
     if (fromSelect && useSunStore.getState().view !== 'off') {
@@ -220,7 +233,7 @@ export function EditorCanvas() {
   const onContextMenu = (e: KonvaEventObject<PointerEvent>) => {
     e.evt.preventDefault();
     const id = objIdOf(e.target);
-    if (!id || tool.type !== 'select') return;
+    if (!id || tool.type !== 'select' || uiStore.getState().mode === 'walk') return;
     uiStore.getState().select(id);
     uiStore.getState().openContextMenu({ screen: { x: e.evt.clientX, y: e.evt.clientY }, objectId: id });
   };
@@ -242,6 +255,7 @@ export function EditorCanvas() {
   const snapStep = garden.settings.snap ? garden.settings.gridSizeM : 0;
   const boundaryFlat = garden.boundary.flatMap((p) => [p.x, p.y]);
   const isSelect = tool.type === 'select';
+  const editable = isSelect && mode === 'edit';
 
   return (
     <div
@@ -285,8 +299,8 @@ export function EditorCanvas() {
             strokeScaleEnabled={false}
             hitStrokeWidth={coarse ? 24 : 12}
             dash={[10, 4]}
-            onClick={() => isSelect && uiStore.getState().select(BOUNDARY_ID)}
-            onTap={() => isSelect && uiStore.getState().select(BOUNDARY_ID)}
+            onClick={() => editable && uiStore.getState().select(BOUNDARY_ID)}
+            onTap={() => editable && uiStore.getState().select(BOUNDARY_ID)}
           />
           {ground.map((o) => (
             <ObjectShape
@@ -295,7 +309,7 @@ export function EditorCanvas() {
               selected={o.id === selectedId}
               scale={view.scale}
               colors={colors}
-              draggable={!coarse || o.id === selectedId}
+              draggable={editable && (!coarse || o.id === selectedId)}
               snapStep={snapStep}
               dragCancelled={dragCancelled}
               onSelect={onSelect}
@@ -316,7 +330,7 @@ export function EditorCanvas() {
               selected={o.id === selectedId}
               scale={view.scale}
               colors={colors}
-              draggable={!coarse || o.id === selectedId}
+              draggable={editable && (!coarse || o.id === selectedId)}
               snapStep={snapStep}
               dragCancelled={dragCancelled}
               onSelect={onSelect}
@@ -330,8 +344,8 @@ export function EditorCanvas() {
           <ObjectLabels objects={visible} scale={view.scale} colors={colors} />
         </Layer>
         <Layer>
-          {isSelect && selected && <ObjectTransformer obj={selected} coarse={coarse} colors={colors} scale={view.scale} />}
-          {isSelect && selected && !selected.locked && (selected.geometry.type === 'polygon' || selected.geometry.type === 'polyline') && (
+          {editable && selected && <ObjectTransformer obj={selected} coarse={coarse} colors={colors} scale={view.scale} />}
+          {editable && selected && !selected.locked && (selected.geometry.type === 'polygon' || selected.geometry.type === 'polyline') && (
             <VertexHandles
               points={selected.geometry.points}
               closed={selected.geometry.type === 'polygon'}
@@ -346,7 +360,7 @@ export function EditorCanvas() {
               }}
             />
           )}
-          {isSelect && selectedId === BOUNDARY_ID && (
+          {editable && selectedId === BOUNDARY_ID && (
             <VertexHandles
               points={garden.boundary}
               closed
@@ -358,7 +372,7 @@ export function EditorCanvas() {
               onChange={(points, final) => update((g) => setBoundary(g, points), final ? undefined : { coalesceKey: 'boundary.vertices' })}
             />
           )}
-          {isSelect && selectedZone && (
+          {editable && selectedZone && (
             <VertexHandles
               points={selectedZone.points}
               closed
@@ -372,6 +386,12 @@ export function EditorCanvas() {
           )}
           {sunView === 'shadows' && <SunArc garden={garden} scale={view.scale} textColor={colors.text} />}
           <DrawingPreview tool={tool} scale={view.scale} colors={colors} />
+          {mode === 'walk' && walkPoint && (
+            <Group x={walkPoint.x} y={walkPoint.y} listening={false}>
+              <Circle radius={14 / view.scale} fill={colors.select} opacity={0.25} />
+              <Circle radius={6 / view.scale} fill={colors.select} stroke="#fff" strokeWidth={2} strokeScaleEnabled={false} />
+            </Group>
+          )}
         </Layer>
       </Stage>
     </div>

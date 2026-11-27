@@ -6,7 +6,10 @@ import { useGardenStore } from '../../state/gardenStore';
 import { Icon } from '../../ui/Icon';
 import { NumberField } from '../../ui/NumberField';
 import { useObjectActions } from './useObjectActions';
-import { SunReadout } from '../sun/SunReadout';
+import { useState } from 'react';
+import type { PlantingArea } from '../../domain/types';
+import { BedPlants } from '../plants/BedPlants';
+import { BedSoil } from '../site/BedSoil';
 
 const fmt = (n: number) => (Math.round(n * 100) / 100).toString();
 
@@ -22,12 +25,29 @@ export function ObjectProperties({ obj }: { obj: GardenObject }) {
   // Kinds this object can switch to: same tree/non-tree class and supports its shape.
   const kindOptions = KIND_LIST.filter((k) => isTreeKind(k.kind) === isTreeKind(obj.kind) && k.shapes.includes(g.type));
   const tree = isTreeKind(obj.kind) && 'crownBaseHeight' in obj ? obj : null;
+  const bed = isPlantingKind(obj.kind) ? (obj as PlantingArea) : null;
+  const hasPlants = !!bed && obj.kind !== 'lawn';
+  const [tab, setTab] = useState<'plants' | 'details'>('plants');
 
   return (
     <div className="panel" data-testid="object-properties">
       <h2>
         <span aria-hidden>{info.icon}</span> {obj.label}
       </h2>
+      {hasPlants && (
+        <div className="seg wide tabs" role="tablist" aria-label="Bed view">
+          <button className={`btn ${tab === 'plants' ? 'active' : ''}`} role="tab" aria-selected={tab === 'plants'} onClick={() => setTab('plants')} data-testid="tab-plants">
+            Plants
+          </button>
+          <button className={`btn ${tab === 'details' ? 'active' : ''}`} role="tab" aria-selected={tab === 'details'} onClick={() => setTab('details')} data-testid="tab-details">
+            Size &amp; soil
+          </button>
+        </div>
+      )}
+      {hasPlants && tab === 'plants' ? (
+        <BedPlants bed={bed!} />
+      ) : (
+        <>
       <label className="field">
         <span>Label</span>
         <input data-testid="prop-label" value={obj.label} onChange={(e) => patch({ label: e.target.value }, 'label')} />
@@ -48,7 +68,6 @@ export function ObjectProperties({ obj }: { obj: GardenObject }) {
           ))}
         </select>
       </label>
-      {(isPlantingKind(obj.kind) || obj.kind === 'terrace') && <SunReadout obj={obj} />}
       <NumberField label="Height" unit="m" value={obj.height} min={0} max={60} testId="prop-height" onChange={(v) => patch({ height: v }, 'height')} />
 
       <h3>Size &amp; position</h3>
@@ -151,6 +170,9 @@ export function ObjectProperties({ obj }: { obj: GardenObject }) {
           <Icon name="trash" /> Delete
         </button>
       </div>
+      {bed && obj.kind !== 'lawn' && <BedSoil bed={bed} />}
+        </>
+      )}
     </div>
   );
 }

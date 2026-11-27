@@ -5,6 +5,7 @@ import { gardenStore } from './state/gardenStore';
 import { uiStore } from './state/uiStore';
 import * as drawing from './features/editor/drawingController';
 import { objectActions } from './features/panels/useObjectActions';
+import { usePlantUi } from './features/plants/plantUiStore';
 
 const isTyping = (t: EventTarget | null) =>
   t instanceof HTMLElement && (t.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(t.tagName));
@@ -12,7 +13,16 @@ const isTyping = (t: EventTarget | null) =>
 export function useKeyboard() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // Escape closes the topmost dialog first.
+      if (e.key === 'Escape') {
+        const pu = usePlantUi.getState();
+        if (pu.editing) return pu.set({ editing: null });
+        if (pu.detail) return pu.set({ detail: null });
+        if (pu.libraryOpen) return pu.set({ libraryOpen: false });
+        if (uiStore.getState().dialog && gardenStore.getState().garden) return uiStore.getState().setDialog(null);
+      }
       if (isTyping(e.target)) return;
+      if (uiStore.getState().mode === 'walk') return;
       const mod = e.ctrlKey || e.metaKey;
       const ui = uiStore.getState();
       const gs = gardenStore.getState();

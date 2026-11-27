@@ -22,6 +22,8 @@ export interface Plant {
     moisture: Moisture[];
     droughtTolerance: Level3;
     usdaZoneMin: number;
+    /** How much the plant wants rich soil (mainly vegetables). */
+    fertility?: Level3;
   };
   size: { heightM: number; spreadM: number; plantingDistanceM: number };
   lifecycle: 'annual' | 'biennial' | 'perennial';
@@ -44,6 +46,8 @@ export interface Plant {
     badCompanions: Id[];
   };
   toxicity: { children: boolean; pets: boolean; note?: string };
+  /** For builtin plants edited by the user. */
+  edited?: boolean;
   source: 'builtin' | 'user';
   approximate: boolean;
   notes?: string;

@@ -23,6 +23,9 @@ export interface SunState {
   progress: number | null;
   /** Tapped point for the sun info card. */
   probe: Vec2 | null;
+  /** Growing-season map used for plant matching (independent of what is displayed). */
+  season: { key: string; result: SunHoursResult } | null;
+  seasonProgress: number | null;
   set: (patch: Partial<Omit<SunState, 'set'>>) => void;
 }
 
@@ -49,6 +52,8 @@ export const useSunStore = create<SunState>()((set) => ({
   resultKey: null,
   progress: null,
   probe: null,
+  season: null,
+  seasonProgress: null,
   set: (patch) => set(patch),
 }));
 

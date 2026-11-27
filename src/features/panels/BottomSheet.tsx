@@ -17,7 +17,10 @@ export function BottomSheet({ children }: { children: ReactNode }) {
   const zone = useGardenStore((s) => s.garden?.zones.find((z) => z.id === selectedId));
   const actions = useObjectActions(obj?.id ?? null);
 
-  const title = obj
+  const walk = useUiStore((s) => s.mode === 'walk');
+  const title = walk
+    ? 'Garden walk'
+    : obj
     ? `${kindInfo(obj.kind).icon} ${obj.label}`
     : zone
       ? `${ZONE_STYLE[zone.kind].label} zone`

@@ -18,6 +18,11 @@ import { SunBar } from './features/sun/SunBar';
 import { SunProbe } from './features/sun/SunProbe';
 import { useSunHoursJob } from './features/sun/useSunHoursJob';
 import { useSunStore } from './state/sunStore';
+import { usePlantStore } from './state/plantStore';
+import { WalkPanel } from './features/walk/WalkPanel';
+import { PlantDetailDialog } from './features/plants/PlantDetailDialog';
+import { PlantEditorDialog } from './features/plants/PlantEditorDialog';
+import { PlantLibraryDialog } from './features/plants/PlantLibraryDialog';
 
 function Toast() {
   const toast = useUiStore((s) => s.toast);
@@ -56,11 +61,13 @@ export function App() {
   const narrow = useIsNarrow();
   const [ready, setReady] = useState(false);
   const sunView = useSunStore((s) => s.view);
+  const mode = useUiStore((s) => s.mode);
   useKeyboard();
   useSunHoursJob();
 
   useEffect(() => {
     const stop = startAutosave();
+    void usePlantStore.getState().load().catch(() => undefined);
     boot()
       .catch((e) => {
         console.error(e);
@@ -91,12 +98,10 @@ export function App() {
               {sunView !== 'off' && <SunBar />}
             </div>
             {narrow ? (
-              <BottomSheet>
-                <PropertiesPanel />
-              </BottomSheet>
+              <BottomSheet>{mode === 'walk' ? <WalkPanel /> : <PropertiesPanel />}</BottomSheet>
             ) : (
               <aside className="side-panel" aria-label="Properties">
-                <PropertiesPanel />
+                {mode === 'walk' ? <WalkPanel /> : <PropertiesPanel />}
               </aside>
             )}
           </>
@@ -113,6 +118,9 @@ export function App() {
       {dialog === 'new' && <NewGardenDialog />}
       {dialog === 'about' && <AboutDialog />}
       <ContextMenu />
+      <PlantLibraryDialog />
+      <PlantDetailDialog />
+      <PlantEditorDialog />
       <Toast />
     </div>
   );

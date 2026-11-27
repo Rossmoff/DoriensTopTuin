@@ -8,7 +8,7 @@ No accounts, no paid APIs, works offline, must work well on a phone in the garde
 ## Status / phases
 - [x] Phase 1 — editor, touch support, save/load (IndexedDB + JSON), PWA shell
 - [x] Phase 2 — sun position, shadows, sun-hours heatmap (Web Worker), manual zones
-- [ ] Phase 3 — site profile, plant database (~150 plants), suitability matching
+- [x] Phase 3 — site profile, plant database (195 plants), suitability matching, garden walk mode
 - [ ] Phase 4 — plant placement, warnings, bloom & vegetable calendars, export
 
 ## Commands
@@ -51,7 +51,19 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
 - `src/features/sun/` — `SunBar` (view switch, date, presets, time slider, play, period), `SunLayers`
   (shadow shape, heatmap bitmap, sun arc), `SunProbe` (tap-a-spot card), `SunSettings` (leaf season,
   bare-tree transmission, calibration), `SunReadout` (average sun hours of a bed).
-- `src/state/sunStore.ts` — sun view state (view, date, minutes, period, last result, probe).
+- `src/state/sunStore.ts` — sun view state (view, date, minutes, period, last result, probe) plus
+  `season`: the growing-season map used for plant matching (`useSeasonSunMap`, own worker channel).
+- `src/data/plants.json` — the curated plant list (**source of truth**, edit directly; 195 plants,
+  70% ornamental, 67 Belgian natives). Loaded via `src/data/plants.ts`; `plants.test.ts` validates
+  ids, ranges, months and companion references.
+- `src/plantSource/` — `PlantSource` interface + `LocalPlantSource` (builtin JSON merged with user
+  plants/edits in IndexedDB store `plants`; same id = user edit wins, `remove` resets an edit).
+- `src/domain/plants/` — `soil.ts` (`effectiveSoil`: site → bed override → zones), `suitability.ts`
+  (`scorePlant`, `rankPlants`), `filters.ts`.
+- `src/features/plants/` — `useSpot` (spot conditions for a bed or point), `SpotSummary`,
+  `PlantSuggestions` (Good/Possible/Unsuitable + filters), `PlantRow`, detail/editor/library
+  dialogs (`plantUiStore`). `src/features/site/` — site profile and bed soil override forms.
+- `src/features/walk/WalkPanel.tsx` — read-only garden walk (`uiStore.mode === 'walk'`).
 - `src/features/panels/` — properties panel (side panel ≥768 px, bottom sheet below).
 - `src/features/plans/`, `src/features/toolbar/` — plans dialog, new plan, import/export, top bar.
 
@@ -95,6 +107,21 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
 - Measured: growing-season map for a busy 30 × 50 m garden ≈ 0.25 s desktop, ≈ 0.8 s at 4× CPU
   throttle; UI stays responsive (worker).
 
+### Plant matching
+- Spot = season sun hours (bed: average over its footprint; point: its cell) + effective soil
+  (site soil, overridden by the bed's `soilOverride`, then zones: wet → wet, extraDry → dry, shady →
+  sun capped at 2 h) + USDA zone.
+- Factors (0..1, weight): sun 3 (hours vs the plant's acceptable range; −1/3 per missing hour,
+  −1/4 per extra hour for shade plants), moisture 2.5 (drier than wanted is softened by drought
+  tolerance), pH 2 (−1/1.5 per pH unit outside the range), soil texture 1 (steps on
+  sand–loamy sand–loam–clay), fertility 1 (vs organic matter; mostly vegetables), hardiness 2
+  (skipped for annuals). Score = weighted mean.
+- Groups: unsuitable if any factor < 0.25 or score < 0.5; good if score ≥ 0.8 and every factor
+  ≥ 0.5; otherwise possible. Ties broken by number of positive notes (acid lover, drought tolerant,
+  native). Vegetable beds list edibles first within each group.
+- Reasons: problems first (worst first, e.g. "prefers pH ≥ 6.5, this spot is ~5.0", "needs moist or
+  wet soil, this spot is dry sand"), then positives. Rows show two; the detail dialog shows all.
+
 ### Konva gotchas found so far
 - Closed `Line` without fill still fills on the hit canvas → set `fillEnabled={false}` for outlines.
 - After dragging a `Line`, reset node x/y to 0 before committing new points (react-konva won't
@@ -121,8 +148,10 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
   Manual sun mode = calibration (azimuth offset + altitude factor).
 - Deploy via GitHub Pages (public repo). Commit and push each phase to the working branch.
 - Sun calibration is entered as compass bearings (sunrise/sunset) and midday altitude for a date.
-- The tap-a-spot card works in both sun views; the full read-only "garden walk" mode with plant
-  suggestions comes with phase 3.
+- The tap-a-spot card works in both sun views. Garden walk mode (phase 3) is read-only: tap a spot
+  for sun hours, soil and plant suggestions; objects can't be selected or moved.
+- Plant list grew to 195 (agreed ~150) to keep the curated ornamentals while staying ~70/30.
+- Escape closes the topmost dialog before it affects the selection or tool.
 
 ## Conventions
 - TypeScript strict; no `any` in domain code. Pure logic in `src/domain`, tested with Vitest next to

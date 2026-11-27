@@ -6,6 +6,7 @@ import { useDrawStore } from '../editor/drawStore';
 import { exportJson, exportPng, importJsonFile, pickFile } from '../plans/fileActions';
 import { AddMenu } from './AddMenu';
 import { useSunStore } from '../../state/sunStore';
+import { usePlantUi } from '../plants/plantUiStore';
 
 const THEMES: { id: Theme; label: string }[] = [
   { id: 'light', label: 'Light' },
@@ -27,6 +28,9 @@ export function TopBar() {
   const setTheme = useUiStore((s) => s.setTheme);
   const showToast = useUiStore((s) => s.showToast);
   const [moreOpen, setMoreOpen] = useState(false);
+  const mode = useUiStore((s) => s.mode);
+  const setMode = useUiStore((s) => s.setMode);
+  const walk = mode === 'walk';
   const addRef = useRef<HTMLButtonElement>(null);
   const moreRef = useRef<HTMLButtonElement>(null);
 
@@ -45,6 +49,8 @@ export function TopBar() {
         <Icon name="folder" />
         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{garden?.name ?? 'Plans'}</span>
       </button>
+      {!walk && (
+        <>
       <div className="sep" />
       <button className="btn icon ghost" onClick={undo} disabled={!canUndo} aria-label="Undo" title="Undo (Ctrl+Z)" data-testid="undo">
         <Icon name="undo" />
@@ -84,6 +90,18 @@ export function TopBar() {
       >
         <Icon name="ruler" /> <span className="only-wide">Measure</span>
       </button>
+        </>
+      )}
+      <button
+        className={`btn ghost ${walk ? 'active' : ''}`}
+        onClick={() => setMode(walk ? 'edit' : 'walk')}
+        aria-pressed={walk}
+        aria-label="Garden walk"
+        title="Garden walk: tap a spot for sun, soil and plant suggestions"
+        data-testid="walk-button"
+      >
+        <Icon name="walk" /> <span className="only-wide">{walk ? 'Done' : 'Walk'}</span>
+      </button>
       <SunToggle />
       <div className="spacer" />
       <button ref={moreRef} className="btn icon ghost" onClick={() => setMoreOpen(!moreOpen)} aria-label="More" aria-haspopup="menu" data-testid="more-button">
@@ -105,6 +123,9 @@ export function TopBar() {
             </button>
             <button className="btn" role="menuitem" onClick={more(() => setDialog('new'))}>
               <Icon name="plus" /> New plan…
+            </button>
+            <button className="btn" role="menuitem" onClick={more(() => usePlantUi.getState().set({ libraryOpen: true }))} data-testid="open-library">
+              <Icon name="leaf" /> Plant library…
             </button>
             <hr />
             <button className="btn" role="menuitem" disabled={!garden} onClick={more(() => garden && exportJson(garden))} data-testid="export-json">

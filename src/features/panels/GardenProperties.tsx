@@ -1,5 +1,4 @@
-import type { Moisture, ObjectGroup, SoilTexture } from '../../domain/types';
-import { MOISTURE_LABELS, SOIL_TEXTURE_LABELS } from '../../domain/types';
+import type { ObjectGroup } from '../../domain/types';
 import { bbox, geometryArea, normDeg, polygonArea } from '../../domain/geometry';
 import { GROUPS, kindInfo } from '../../data/objectCatalog';
 import { rectBoundary } from '../../data/defaults';
@@ -8,6 +7,7 @@ import { useGardenStore } from '../../state/gardenStore';
 import { BOUNDARY_ID, useUiStore } from '../../state/uiStore';
 import { NumberField } from '../../ui/NumberField';
 import { SunSettings } from '../sun/SunSettings';
+import { SiteProfile } from '../site/SiteProfile';
 
 const fmt = (n: number) => (Math.round(n * 10) / 10).toString();
 
@@ -51,7 +51,6 @@ export function GardenProperties() {
   const update = useGardenStore((s) => s.update);
   const select = useUiStore((s) => s.select);
   const hidden = new Set(garden.settings.hiddenGroups);
-  const soil = garden.site.soil;
 
   const toggleGroup = (id: ObjectGroup | 'zones') => {
     const next = hidden.has(id) ? garden.settings.hiddenGroups.filter((g) => g !== id) : [...garden.settings.hiddenGroups, id];
@@ -105,43 +104,7 @@ export function GardenProperties() {
 
       <SunSettings />
 
-      <h3>Site soil</h3>
-      <label className="field">
-        <span>Soil texture</span>
-        <select
-          value={soil.texture}
-          onChange={(e) => update((g) => ({ ...g, site: { ...g.site, soil: { ...g.site.soil, texture: e.target.value as SoilTexture } } }))}
-        >
-          {(Object.keys(SOIL_TEXTURE_LABELS) as SoilTexture[]).map((t) => (
-            <option key={t} value={t}>
-              {SOIL_TEXTURE_LABELS[t].en} ({SOIL_TEXTURE_LABELS[t].nl})
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className="field">
-        <span>Moisture</span>
-        <select
-          value={soil.moisture}
-          onChange={(e) => update((g) => ({ ...g, site: { ...g.site, soil: { ...g.site.soil, moisture: e.target.value as Moisture } } }))}
-        >
-          {(Object.keys(MOISTURE_LABELS) as Moisture[]).map((m) => (
-            <option key={m} value={m}>
-              {MOISTURE_LABELS[m].en} ({MOISTURE_LABELS[m].nl})
-            </option>
-          ))}
-        </select>
-      </label>
-      <NumberField
-        label="pH"
-        value={soil.pH}
-        min={3}
-        max={9}
-        step={0.1}
-        decimals={1}
-        onChange={(v) => update((g) => ({ ...g, site: { ...g.site, soil: { ...g.site.soil, pH: v } } }), { coalesceKey: 'site.pH' })}
-      />
-      <p className="hint">Used for plant matching (phase 3). Beds will be able to override these.</p>
+      <SiteProfile />
 
       <h3>Location</h3>
       <NumberField label="Latitude" unit="°" step={0.01} decimals={4} min={-90} max={90} value={garden.location.lat} onChange={(v) => update((g) => ({ ...g, location: { ...g.location, lat: v } }), { coalesceKey: 'lat' })} />

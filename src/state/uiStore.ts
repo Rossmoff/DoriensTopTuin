@@ -20,7 +20,14 @@ export interface View {
 
 export const BOUNDARY_ID = '__boundary__';
 
+export type Mode = 'edit' | 'walk';
+
 export interface UiState {
+  /** 'walk' = read-only garden walk: tap a spot to see its sun, soil and suitable plants. */
+  mode: Mode;
+  walkPoint: Vec2 | null;
+  setMode: (m: Mode) => void;
+  setWalkPoint: (p: Vec2 | null) => void;
   tool: Tool;
   selectedId: Id | null;
   view: View;
@@ -56,6 +63,10 @@ function readTheme(): Theme {
 }
 
 export const useUiStore = create<UiState>()((set) => ({
+  mode: 'edit',
+  walkPoint: null,
+  setMode: (mode) => set({ mode, walkPoint: null, selectedId: null, tool: { type: 'select' }, contextMenu: null, addMenuOpen: false }),
+  setWalkPoint: (walkPoint) => set({ walkPoint }),
   tool: { type: 'select' },
   selectedId: null,
   view: { scale: 20, x: 40, y: 40 },

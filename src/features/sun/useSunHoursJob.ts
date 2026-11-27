@@ -40,7 +40,7 @@ export function periodLabel(p: SunPeriod): string {
 }
 
 /** The parts of a garden that affect sun hours. */
-function inputsKey(g: Garden, period: SunPeriod): string {
+export function inputsKey(g: Garden, period: SunPeriod): string {
   return JSON.stringify([g.objects, g.boundary, g.planUpBearingDeg, g.location, g.sunCorrection, g.settings.leafSeason, g.settings.leaflessTransmission, period]);
 }
 
@@ -73,4 +73,44 @@ export function useSunHoursJob() {
       clearTimeout(timer);
     };
   }, [garden, view, period, date, from, to, daily]);
+}
+
+/** Growing season (Apr–Sep, weekly) of the selected year: the basis for plant matching. */
+export function seasonPeriod(date: string): SunPeriod {
+  return growingSeason(Number(date.slice(0, 4)), 7);
+}
+
+/**
+ * Keeps a growing-season map up to date while `enabled` (a bed is selected, walk mode, …).
+ * Reuses the displayed map when it is the same computation.
+ */
+export function useSeasonSunMap(enabled: boolean) {
+  const garden = useGardenStore((s) => s.garden);
+  const date = useSunStore((s) => s.date);
+  const displayKey = useSunStore((s) => s.resultKey);
+
+  useEffect(() => {
+    if (!enabled || !garden) return;
+    const p = seasonPeriod(date);
+    const key = inputsKey(garden, p);
+    const st = sunStore.getState();
+    if (st.season?.key === key) return;
+    if (st.resultKey === key && st.result) {
+      st.set({ season: { key, result: st.result } });
+      return;
+    }
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      sunStore.getState().set({ seasonProgress: 0 });
+      runSunHours(sunHoursInputForGarden(garden, p), (f) => !cancelled && sunStore.getState().set({ seasonProgress: f }), 'season')
+        .then((result) => {
+          if (!cancelled) sunStore.getState().set({ season: { key, result }, seasonProgress: null });
+        })
+        .catch(() => !cancelled && sunStore.getState().set({ seasonProgress: null }));
+    }, 400);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [enabled, garden, date, displayKey]);
 }
