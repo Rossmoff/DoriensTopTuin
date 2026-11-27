@@ -23,7 +23,8 @@ npm run e2e          # Playwright, desktop + Pixel 7 projects (builds first)
 npm run icons        # regenerate PNG icons from public/favicon.svg
 ```
 CI (`.github/workflows/ci.yml`) runs typecheck, unit and e2e tests on every push.
-`.github/workflows/pages.yml` deploys `dist/` to GitHub Pages on push to `main` (BASE_PATH=/<repo>/).
+`.github/workflows/pages.yml` deploys `dist/` to GitHub Pages on push to `main` or the working
+branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmoff.github.io/DoriensTopTuin/.
 
 ## Architecture
 - **React 19 + TypeScript (strict) + Vite**, **react-konva** canvas, **zustand** state,
