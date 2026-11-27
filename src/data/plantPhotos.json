@@ -1,1 +1,330 @@
-{}
+{
+ "abelia-grandiflora": {
+  "file": "abelia-grandiflora.webp",
+  "title": "Abelia_flowers.jpg",
+  "author": "Mariko GODA",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Abelia_flowers.jpg"
+ },
+ "acer-palmatum": {
+  "file": "acer-palmatum.webp",
+  "title": "Acer_palmatum0.jpg",
+  "author": "Kurt Stüber [1]",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Acer_palmatum0.jpg"
+ },
+ "achillea-millefolium": {
+  "file": "achillea-millefolium.webp",
+  "title": "Achillea_millefolium_(bright).jpg",
+  "author": "SAplants",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Achillea_millefolium_(bright).jpg"
+ },
+ "allium-purple-sensation": {
+  "file": "allium-purple-sensation.webp",
+  "title": "Allium_hollandicum.jpg",
+  "author": "Нацку",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Allium_hollandicum.jpg"
+ },
+ "amelanchier-lamarckii": {
+  "file": "amelanchier-lamarckii.webp",
+  "title": "Busch_Jakobsberg.jpg",
+  "author": "Udo Schröter",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Busch_Jakobsberg.jpg"
+ },
+ "andromeda-polifolia": {
+  "file": "andromeda-polifolia.webp",
+  "title": "Andromeda_polifolia_bloom.jpg",
+  "author": "Mnolf",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Andromeda_polifolia_bloom.jpg"
+ },
+ "anemone-nemorosa": {
+  "file": "anemone-nemorosa.webp",
+  "title": "Anemone_nemorosa_001.JPG",
+  "author": "Lilly M",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Anemone_nemorosa_001.JPG"
+ },
+ "apple": {
+  "file": "apple.webp",
+  "title": "Pink_lady_and_cross_section.jpg",
+  "author": "fir0002 flagstaffotos [at] gmail.com Canon 20D + Sigma 150mm f/2.8",
+  "license": "GFDL 1.2",
+  "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+  "source": "https://commons.wikimedia.org/wiki/File:Pink_lady_and_cross_section.jpg"
+ },
+ "armeria-maritima": {
+  "file": "armeria-maritima.webp",
+  "title": "Armeria_maritima_Dunnet_Head.jpg",
+  "author": "Wilson44691",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Armeria_maritima_Dunnet_Head.jpg"
+ },
+ "astilbe-arendsii": {
+  "file": "astilbe-arendsii.webp",
+  "title": "Astilbe_arendsii1.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Astilbe_arendsii1.jpg"
+ },
+ "athyrium-filix-femina": {
+  "file": "athyrium-filix-femina.webp",
+  "title": "Athyrium_filix-femina0.jpg",
+  "author": "No machine-readable author provided. MPF assumed (based on copyright claims).",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Athyrium_filix-femina0.jpg"
+ },
+ "basil": {
+  "file": "basil.webp",
+  "title": "Ocimum_basilicum_8zz.jpg",
+  "author": "Photo by David J. Stang",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ocimum_basilicum_8zz.jpg"
+ },
+ "beetroot": {
+  "file": "beetroot.webp",
+  "title": "Detroitdarkredbeets.png",
+  "author": "BriannaWalther",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Detroitdarkredbeets.png"
+ },
+ "betula-pendula": {
+  "file": "betula-pendula.webp",
+  "title": "Betula_pendula_Finland.jpg",
+  "author": "Percita at Flickr",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Betula_pendula_Finland.jpg"
+ },
+ "bilberry": {
+  "file": "bilberry.webp",
+  "title": "Vaccinium_myrtillus_Mustikka_IMG_1100_C-_cropped.jpg",
+  "author": "Anneli Salo",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Vaccinium_myrtillus_Mustikka_IMG_1100_C-_cropped.jpg"
+ },
+ "blackberry": {
+  "file": "blackberry.webp",
+  "title": "Ripe,_ripening,_and_green_blackberries.jpg",
+  "author": "Ragesoss",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ripe,_ripening,_and_green_blackberries.jpg"
+ },
+ "blackcurrant": {
+  "file": "blackcurrant.webp",
+  "title": "Ribes_nigrum_a1.JPG",
+  "author": "Jerzy Opioła",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Ribes_nigrum_a1.JPG"
+ },
+ "blechnum-spicant": {
+  "file": "blechnum-spicant.webp",
+  "title": "Blechnum_spicant_(fertile_and_sterile_fronts).jpg",
+  "author": "Hans Hillewaert",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Blechnum_spicant_(fertile_and_sterile_fronts).jpg"
+ },
+ "blueberry": {
+  "file": "blueberry.webp",
+  "title": "Vaccinium_corymbosum(01).jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Vaccinium_corymbosum(01).jpg"
+ },
+ "borage": {
+  "file": "borage.webp",
+  "title": "Borago_officinalis_(2025).jpg",
+  "author": "Christian Orlandi",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Borago_officinalis_(2025).jpg"
+ },
+ "broad-bean": {
+  "file": "broad-bean.webp",
+  "title": "Illustration_Vicia_faba1.jpg",
+  "author": "unknown",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Illustration_Vicia_faba1.jpg"
+ },
+ "broccoli": {
+  "file": "broccoli.webp",
+  "title": "Broccoli_and_cross_section_edit.jpg",
+  "author": "Fir0002",
+  "license": "GFDL 1.2",
+  "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+  "source": "https://commons.wikimedia.org/wiki/File:Broccoli_and_cross_section_edit.jpg"
+ },
+ "brunnera-macrophylla": {
+  "file": "brunnera-macrophylla.webp",
+  "title": "(MHNT)_Brunnera_macrophylla,_flowers_-_Les_Martels,_Giroussens_Tarn.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:(MHNT)_Brunnera_macrophylla,_flowers_-_Les_Martels,_Giroussens_Tarn.jpg"
+ },
+ "buddleja-davidii": {
+  "file": "buddleja-davidii.webp",
+  "title": "BuddlejaDavidiiStrauch.jpg",
+  "author": "--IKAl 15:22, 23 July 2007 (UTC)",
+  "license": "CC BY-SA 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:BuddlejaDavidiiStrauch.jpg"
+ },
+ "cabbage": {
+  "file": "cabbage.webp",
+  "title": "Cabbage_and_cross_section_on_white.jpg",
+  "author": "fir0002 flagstaffotos [at] gmail.com Canon 20D + Sigma 150mm f/2.8",
+  "license": "GFDL 1.2",
+  "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+  "source": "https://commons.wikimedia.org/wiki/File:Cabbage_and_cross_section_on_white.jpg"
+ },
+ "calamagrostis-acutiflora": {
+  "file": "calamagrostis-acutiflora.webp",
+  "title": "Calamagrostis_×_acutiflora_Overdam_2zz.jpg",
+  "author": "Photo by David J. Stang",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Calamagrostis_%C3%97_acutiflora_Overdam_2zz.jpg"
+ },
+ "calendula": {
+  "file": "calendula.webp",
+  "title": "Calendula_officinalis,_pot_marigold.JPG",
+  "author": "Betty Cai",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Calendula_officinalis,_pot_marigold.JPG"
+ },
+ "calluna-vulgaris": {
+  "file": "calluna-vulgaris.webp",
+  "title": "CallunaVulgaris.jpg",
+  "author": "Aqwis (Aqwis)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:CallunaVulgaris.jpg"
+ },
+ "camellia-japonica": {
+  "file": "camellia-japonica.webp",
+  "title": "Camellia_japonica_'Pink_Perfection'.jpg",
+  "author": "No machine-readable author provided. User:Fir0002 assumed (based on copyright claims).",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Camellia_japonica_%27Pink_Perfection%27.jpg"
+ },
+ "campanula-rotundifolia": {
+  "file": "campanula-rotundifolia.webp",
+  "title": "Campanula_rotondifolia.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Campanula_rotondifolia.jpg"
+ },
+ "carpinus-betulus": {
+  "file": "carpinus-betulus.webp",
+  "title": "Carpinus_betulus_-_Hunsrück_001.jpg",
+  "author": "Willow",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Carpinus_betulus_-_Hunsr%C3%BCck_001.jpg"
+ },
+ "carrot": {
+  "file": "carrot.webp",
+  "title": "Vegetable-Carrot-Bundle-wStalks.jpg",
+  "author": "Evan-Amos",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Vegetable-Carrot-Bundle-wStalks.jpg"
+ },
+ "celeriac": {
+  "file": "celeriac.webp",
+  "title": "Céleri-rave-fendu.jpg",
+  "author": "DocteurCosmos",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9leri-rave-fendu.jpg"
+ },
+ "chard": {
+  "file": "chard.webp",
+  "title": "Chard_(Beta_vulgaris_var_cicla).jpg",
+  "author": "Neelix at English Wikipedia",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Chard_(Beta_vulgaris_var_cicla).jpg"
+ },
+ "chives": {
+  "file": "chives.webp",
+  "title": "Allium_schoenoprasum_-_Bombus_lapidarius_-_Tootsi.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Allium_schoenoprasum_-_Bombus_lapidarius_-_Tootsi.jpg"
+ },
+ "clematis-montana": {
+  "file": "clematis-montana.webp",
+  "title": "Clematis_Montana_02.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Clematis_Montana_02.jpg"
+ },
+ "clematis-viticella": {
+  "file": "clematis-viticella.webp",
+  "title": "Clematis_viticella3UME.jpg",
+  "author": "Epibase",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Clematis_viticella3UME.jpg"
+ },
+ "convallaria-majalis": {
+  "file": "convallaria-majalis.webp",
+  "title": "Convallaria_majalis_inflorescence_-_Keila.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Convallaria_majalis_inflorescence_-_Keila.jpg"
+ },
+ "coreopsis-verticillata": {
+  "file": "coreopsis-verticillata.webp",
+  "title": "Coreopsis_verticillata.jpg",
+  "author": "Chrumps",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Coreopsis_verticillata.jpg"
+ },
+ "coriander": {
+  "file": "coriander.webp",
+  "title": "Coriandrum_sativum_-_Köhler–s_Medizinal-Pflanzen-193.jpg",
+  "author": "Franz Eugen Köhler, Köhler's Medizinal-Pflanzen",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Coriandrum_sativum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-193.jpg"
+ },
+ "cornus-alba": {
+  "file": "cornus-alba.webp",
+  "title": "Cornus_alba_a2.jpg",
+  "author": "Opioła Jerzy (Poland)",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Cornus_alba_a2.jpg"
+ }
+}
