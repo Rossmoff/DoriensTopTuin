@@ -638,5 +638,269 @@
   "license": "CC BY-SA 3.0",
   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
   "source": "https://commons.wikimedia.org/wiki/File:Genista_pilosa.jpg"
+ },
+ "geranium-macrorrhizum": {
+  "file": "geranium-macrorrhizum.webp",
+  "title": "Geranium_macrorrhizum_flowers.jpg",
+  "author": "Hardyplants at English Wikipedia",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Geranium_macrorrhizum_flowers.jpg"
+ },
+ "geranium-rozanne": {
+  "file": "geranium-rozanne.webp",
+  "title": "Storchenschäbel_'Buxtons_Blue'.JPG",
+  "author": "Huhu at de.wikipedia",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Storchensch%C3%A4bel_%27Buxtons_Blue%27.JPG"
+ },
+ "gooseberry": {
+  "file": "gooseberry.webp",
+  "title": "Stachelbeeren.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Stachelbeeren.jpg"
+ },
+ "hakonechloa-macra": {
+  "file": "hakonechloa-macra.webp",
+  "title": "Hakonechloa_macra_'All_Gold'_Leaves_2448px.jpg",
+  "author": "Photo by and (c)2006 Derek Ramsey (Ram-Man). Location credit to the Chanticleer Garden.",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Hakonechloa_macra_%27All_Gold%27_Leaves_2448px.jpg"
+ },
+ "hazelnut": {
+  "file": "hazelnut.webp",
+  "title": "Corylus_avellana.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Corylus_avellana.jpg"
+ },
+ "hedera-helix": {
+  "file": "hedera-helix.webp",
+  "title": "Hedera_helix_Dover.jpg",
+  "author": "kallerna",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Hedera_helix_Dover.jpg"
+ },
+ "helleborus-orientalis": {
+  "file": "helleborus-orientalis.webp",
+  "title": "Helleborus_orientalis._Lenteroos_04.JPG",
+  "author": "Dominicus Johannes Bergsma",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Helleborus_orientalis._Lenteroos_04.JPG"
+ },
+ "hibiscus-syriacus": {
+  "file": "hibiscus-syriacus.webp",
+  "title": "Hibiscus_Syriacus.JPG",
+  "author": "Eric Kounce TexasRaiser",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Hibiscus_Syriacus.JPG"
+ },
+ "hieracium-pilosella": {
+  "file": "hieracium-pilosella.webp",
+  "title": "Hieracium_pilosella_plant.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Hieracium_pilosella_plant.jpg"
+ },
+ "hosta": {
+  "file": "hosta.webp",
+  "title": "Hosta_Bressingham_Blue.JPG",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Hosta_Bressingham_Blue.JPG"
+ },
+ "hyacinthoides-non-scripta": {
+  "file": "hyacinthoides-non-scripta.webp",
+  "title": "Hyacinthoides_non-scripta_(Common_Bluebell).jpg",
+  "author": "MichaelMaggs",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Hyacinthoides_non-scripta_(Common_Bluebell).jpg"
+ },
+ "hydrangea-anomala-petiolaris": {
+  "file": "hydrangea-anomala-petiolaris.webp",
+  "title": "Hydrangea_arborescens_139866012.jpg",
+  "author": "Jacob Malcom",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Hydrangea_arborescens_139866012.jpg"
+ },
+ "hydrangea-macrophylla": {
+  "file": "hydrangea-macrophylla.webp",
+  "title": "(Natural)_Hydrangea_macrophylla,_Iwafune,_Isumi,_Chiba,_Japan_2.jpg",
+  "author": "belvedere04",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:(Natural)_Hydrangea_macrophylla,_Iwafune,_Isumi,_Chiba,_Japan_2.jpg"
+ },
+ "hydrangea-paniculata": {
+  "file": "hydrangea-paniculata.webp",
+  "title": "Hydrangea_paniculata_IMG_6629.JPG",
+  "author": "Hedwig Storch",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Hydrangea_paniculata_IMG_6629.JPG"
+ },
+ "hylotelephium-telephium": {
+  "file": "hylotelephium-telephium.webp",
+  "title": "Sedum_telephium_240808e.jpg",
+  "author": "Bernd Haynold",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Sedum_telephium_240808e.jpg"
+ },
+ "hypericum-hidcote": {
+  "file": "hypericum-hidcote.webp",
+  "title": "(MHNT)_Hypericum_perforatum_flower_and_buttons.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:(MHNT)_Hypericum_perforatum_flower_and_buttons.jpg"
+ },
+ "hypericum-perforatum": {
+  "file": "hypericum-perforatum.webp",
+  "title": "(MHNT)_Hypericum_perforatum_flower_and_buttons.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:(MHNT)_Hypericum_perforatum_flower_and_buttons.jpg"
+ },
+ "ilex-aquifolium": {
+  "file": "ilex-aquifolium.webp",
+  "title": "Ilex-aquifolium_(Europaeische_Stechpalme-1).jpg",
+  "author": "Jürgen Howaldt",
+  "license": "CC BY-SA 2.0 de",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Ilex-aquifolium_(Europaeische_Stechpalme-1).jpg"
+ },
+ "ilex-crenata": {
+  "file": "ilex-crenata.webp",
+  "title": "Ilex_Crenata5.jpg",
+  "author": "KENPEI",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Ilex_Crenata5.jpg"
+ },
+ "jasione-montana": {
+  "file": "jasione-montana.webp",
+  "title": "Bombus_soroeensis_-_Jasione_montana_-_Tallinn.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Bombus_soroeensis_-_Jasione_montana_-_Tallinn.jpg"
+ },
+ "jerusalem-artichoke": {
+  "file": "jerusalem-artichoke.webp",
+  "title": "Sunroot_top.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Sunroot_top.jpg"
+ },
+ "juniperus-communis": {
+  "file": "juniperus-communis.webp",
+  "title": "Jeneverbes.jpg",
+  "author": "Rasbak at Dutch Wikipedia",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Jeneverbes.jpg"
+ },
+ "kale": {
+  "file": "kale.webp",
+  "title": "Boerenkool.jpg",
+  "author": "Rasbak",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Boerenkool.jpg"
+ },
+ "kalmia-latifolia": {
+  "file": "kalmia-latifolia.webp",
+  "title": "Kalmia_Latifolia.jpg",
+  "author": "Arx Fortis at English Wikipedia",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Kalmia_Latifolia.jpg"
+ },
+ "knautia-arvensis": {
+  "file": "knautia-arvensis.webp",
+  "title": "Knautia_arvensis_flower_(side_view)_-_Keila.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Knautia_arvensis_flower_(side_view)_-_Keila.jpg"
+ },
+ "kohlrabi": {
+  "file": "kohlrabi.webp",
+  "title": "Brassica_oleracea_var._gongylodes_(kohlrabi).jpg",
+  "author": "Unknown",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Brassica_oleracea_var._gongylodes_(kohlrabi).jpg"
+ },
+ "lambs-lettuce": {
+  "file": "lambs-lettuce.webp",
+  "title": "Ackersalat02.jpg",
+  "author": "Schwäbin",
+  "license": "CC BY-SA 3.0 de",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Ackersalat02.jpg"
+ },
+ "lavandula-angustifolia": {
+  "file": "lavandula-angustifolia.webp",
+  "title": "Lavandula_angustifolia_-_Köhler–s_Medizinal-Pflanzen-087.jpg",
+  "author": "Franz Eugen Köhler, Köhler's Medizinal-Pflanzen",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Lavandula_angustifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-087.jpg"
+ },
+ "leek": {
+  "file": "leek.webp",
+  "title": "Leek_on_white_background_-_0947.jpg",
+  "author": "Amada44",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Leek_on_white_background_-_0947.jpg"
+ },
+ "lemon-balm": {
+  "file": "lemon-balm.webp",
+  "title": "Lemon_balm_plant.jpg",
+  "author": "Amitchell125",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Lemon_balm_plant.jpg"
+ },
+ "lettuce": {
+  "file": "lettuce.webp",
+  "title": "Iceberg_lettuce_in_SB.jpg",
+  "author": "en:User:Geographer",
+  "license": "CC BY 1.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/1.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Iceberg_lettuce_in_SB.jpg"
+ },
+ "leucanthemum-vulgare": {
+  "file": "leucanthemum-vulgare.webp",
+  "title": "Leucanthemum_vulgare_'Filigran'_Flower_2200px.jpg",
+  "author": "Photo by and (c)2008 Derek Ramsey (Ram-Man). Co-attribution must be given to the Chanticleer Garden.",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Leucanthemum_vulgare_%27Filigran%27_Flower_2200px.jpg"
+ },
+ "ligustrum-vulgare": {
+  "file": "ligustrum-vulgare.webp",
+  "title": "Wilde_liguster_(Ligustrum_vulgare).jpg",
+  "author": "Rasbak",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Wilde_liguster_(Ligustrum_vulgare).jpg"
  }
 }
