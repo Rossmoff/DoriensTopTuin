@@ -69,6 +69,16 @@ OVERRIDES = {
     'raspberry': ['Rubus idaeus'],
     'blueberry': ['Vaccinium corymbosum'],
     'asparagus': ['Asparagus', 'White asparagus', 'Asparagus officinalis'],
+    # 'Rocket' is the spacecraft article.
+    'rocket': ['Eruca vesicaria', 'Arugula'],
+    'parsnip': ['Pastinaca sativa', 'Parsnip'],
+}
+
+# Commons files to use directly when no article has a free lead image.
+FILE_OVERRIDES = {
+    'asparagus': '20180428Asparagus officinalis1.jpg',
+    # The article image is a seed capsule drawing.
+    'tulipa-sylvestris': 'Tulipa sylvestris (flower).jpg',
 }
 
 CACHE = ROOT / 'node_modules/.cache/plant-photos-api.json'
@@ -213,8 +223,8 @@ def main() -> None:
     print(f'{len(todo)} plants to fetch', flush=True)
 
     cache = load_cache()
-    chosen: dict[str, str] = {}
-    pending = {p['id']: candidates(p) for p in todo}
+    chosen: dict[str, str] = {p['id']: FILE_OVERRIDES[p['id']] for p in todo if p['id'] in FILE_OVERRIDES}
+    pending = {p['id']: candidates(p) for p in todo if p['id'] not in FILE_OVERRIDES}
     level = 0
     while pending and level < 6:
         titles = sorted({c[level] for c in pending.values() if len(c) > level})

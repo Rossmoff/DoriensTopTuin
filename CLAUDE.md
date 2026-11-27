@@ -56,6 +56,14 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
 - `src/data/plants.json` — the curated plant list (**source of truth**, edit directly; 195 plants,
   70% ornamental, 67 Belgian natives). Loaded via `src/data/plants.ts`; `plants.test.ts` validates
   ids, ranges, months and companion references.
+- `public/plants/<id>.webp` + `src/data/plantPhotos.json` — a 160×160 photo per builtin plant from
+  Wikimedia Commons (free licences only) with author/licence/source credits, shown in plant details.
+  Regenerate with `python3 -I scripts/fetch-plant-photos.py [--only ids] [--force]` (needs network
+  access to en.wikipedia.org, commons.wikimedia.org and upload.wikimedia.org; it backs off on rate
+  limits and caches API lookups in node_modules/.cache). `OVERRIDES` / `FILE_OVERRIDES` in the script
+  pin article titles or Commons files for plants whose default image is wrong (e.g. "Rocket").
+  `PlantThumb` shows the user's own photo (`Plant.photo`, a small data URL made in the editor) first,
+  then the builtin photo, then a colour dot. `plantPhotos.test.ts` checks every credit has a file.
 - `src/plantSource/` — `PlantSource` interface + `LocalPlantSource` (builtin JSON merged with user
   plants/edits in IndexedDB store `plants`; same id = user edit wins, `remove` resets an edit).
 - `src/domain/plants/` — `soil.ts` (`effectiveSoil`: site → bed override → zones), `suitability.ts`
@@ -171,6 +179,8 @@ branch `claude/busy-hypatia-a07gbr` (BASE_PATH=/<repo>/). Live at https://rossmo
   for sun hours, soil and plant suggestions; objects can't be selected or moved.
 - Plant list grew to 195 (agreed ~150) to keep the curated ornamentals while staying ~70/30.
 - Escape closes the topmost dialog before it affects the selection or tool.
+- Plant photos: real photos (Wikimedia Commons, credited) rather than drawn icons, bundled and
+  precached so they work offline (~1.6 MB). Users can replace any photo with their own.
 
 ## Conventions
 - TypeScript strict; no `any` in domain code. Pure logic in `src/domain`, tested with Vitest next to

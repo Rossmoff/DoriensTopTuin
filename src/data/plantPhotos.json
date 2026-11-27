@@ -71,6 +71,14 @@
   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
   "source": "https://commons.wikimedia.org/wiki/File:Armeria_maritima_Dunnet_Head.jpg"
  },
+ "asparagus": {
+  "file": "asparagus.webp",
+  "title": "20180428Asparagus officinalis1.jpg",
+  "author": "AnRo0002",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:20180428Asparagus_officinalis1.jpg"
+ },
  "astilbe-arendsii": {
   "file": "astilbe-arendsii.webp",
   "title": "Astilbe_arendsii1.jpg",
@@ -358,6 +366,14 @@
   "license": "Public domain",
   "licenseUrl": "",
   "source": "https://commons.wikimedia.org/wiki/File:CSA-Striped-Zucchini.jpg"
+ },
+ "crataegus-monogyna": {
+  "file": "crataegus-monogyna.webp",
+  "title": "Hawthorn_fruit.JPG",
+  "author": "Elstro",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Hawthorn_fruit.JPG"
  },
  "crocus-tommasinianus": {
   "file": "crocus-tommasinianus.webp",
@@ -902,5 +918,645 @@
   "license": "CC BY-SA 3.0",
   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
   "source": "https://commons.wikimedia.org/wiki/File:Wilde_liguster_(Ligustrum_vulgare).jpg"
+ },
+ "lingonberry": {
+  "file": "lingonberry.webp",
+  "title": "Vaccinium_vitis-idaea_20060824_003.jpg",
+  "author": "Jonas Bergsten",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Vaccinium_vitis-idaea_20060824_003.jpg"
+ },
+ "lonicera-periclymenum": {
+  "file": "lonicera-periclymenum.webp",
+  "title": "European_honeysuckle_800.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:European_honeysuckle_800.jpg"
+ },
+ "luzula-sylvatica": {
+  "file": "luzula-sylvatica.webp",
+  "title": "Luzula_sylvatica_in_natural_setting.JPG",
+  "author": "Cwmhiraeth",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Luzula_sylvatica_in_natural_setting.JPG"
+ },
+ "lysimachia-vulgaris": {
+  "file": "lysimachia-vulgaris.webp",
+  "title": "Lysimachia_vulgaris_(flowers)_2.jpg",
+  "author": "Le.Loup.Gris",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Lysimachia_vulgaris_(flowers)_2.jpg"
+ },
+ "lythrum-salicaria": {
+  "file": "lythrum-salicaria.webp",
+  "title": "Lythrum_salicaria_-_harilik_kukesaba.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Lythrum_salicaria_-_harilik_kukesaba.jpg"
+ },
+ "magnolia-stellata": {
+  "file": "magnolia-stellata.webp",
+  "title": "Magnolia_stellata_fleurs.jpg",
+  "author": "Myrabella",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Magnolia_stellata_fleurs.jpg"
+ },
+ "mahonia-aquifolium": {
+  "file": "mahonia-aquifolium.webp",
+  "title": "Mahonia_aquifolium.jpg",
+  "author": "The original uploader was Meggar at English Wikipedia.",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Mahonia_aquifolium.jpg"
+ },
+ "malus-evereste": {
+  "file": "malus-evereste.webp",
+  "title": "Malus_Evereste_B.jpg",
+  "author": "Wouter Hagens",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Malus_Evereste_B.jpg"
+ },
+ "mint": {
+  "file": "mint.webp",
+  "title": "Minze.jpg",
+  "author": "Simon Eugster --Simon 13:07, 2 July 2006 (UTC)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Minze.jpg"
+ },
+ "miscanthus-sinensis": {
+  "file": "miscanthus-sinensis.webp",
+  "title": "Japanese_pampas_grass_ススキの穂波PB080105.jpg",
+  "author": "松岡明芳",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Japanese_pampas_grass_%E3%82%B9%E3%82%B9%E3%82%AD%E3%81%AE%E7%A9%82%E6%B3%A2PB080105.jpg"
+ },
+ "molinia-caerulea": {
+  "file": "molinia-caerulea.webp",
+  "title": "Molinia.jpg",
+  "author": "Elke Freese",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Molinia.jpg"
+ },
+ "muscari-armeniacum": {
+  "file": "muscari-armeniacum.webp",
+  "title": "Muscari_armeniacum_4.jpg",
+  "author": "Opioła Jerzy (Poland)",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Muscari_armeniacum_4.jpg"
+ },
+ "myrica-gale": {
+  "file": "myrica-gale.webp",
+  "title": "Gagelstrauch(Myrica_gale)female.JPG",
+  "author": "Hajotthu",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Gagelstrauch(Myrica_gale)female.JPG"
+ },
+ "narcissus": {
+  "file": "narcissus.webp",
+  "title": "Narcissus_poeticus_subsp._radiiflorus.1658.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Narcissus_poeticus_subsp._radiiflorus.1658.jpg"
+ },
+ "nasturtium": {
+  "file": "nasturtium.webp",
+  "title": "Tropaeolum_majus_2005_G1.jpg",
+  "author": "George Chernilevsky",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Tropaeolum_majus_2005_G1.jpg"
+ },
+ "nepeta-faassenii": {
+  "file": "nepeta-faassenii.webp",
+  "title": "Nepeta_faassenii6.jpg",
+  "author": "KENPEI",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Nepeta_faassenii6.jpg"
+ },
+ "onion": {
+  "file": "onion.webp",
+  "title": "Mixed_onions.jpg",
+  "author": "Colin",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Mixed_onions.jpg"
+ },
+ "origanum-vulgare": {
+  "file": "origanum-vulgare.webp",
+  "title": "Origanum_vulgare_-_harilik_pune.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Origanum_vulgare_-_harilik_pune.jpg"
+ },
+ "osmunda-regalis": {
+  "file": "osmunda-regalis.webp",
+  "title": "Osmunda_regalis_Mimizan.jpg",
+  "author": "E Wusk",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Osmunda_regalis_Mimizan.jpg"
+ },
+ "pachysandra-terminalis": {
+  "file": "pachysandra-terminalis.webp",
+  "title": "Pachysandra_terminalis0.jpg",
+  "author": "Kurt Stüber [1]",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Pachysandra_terminalis0.jpg"
+ },
+ "pak-choi": {
+  "file": "pak-choi.webp",
+  "title": "Bok_Choy_(49553125456).jpg",
+  "author": "spurekar",
+  "license": "CC BY 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Bok_Choy_(49553125456).jpg"
+ },
+ "panicum-virgatum": {
+  "file": "panicum-virgatum.webp",
+  "title": "Panicum_virgatum.jpg",
+  "author": "Warren Gretz, DOE/NREL",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Panicum_virgatum.jpg"
+ },
+ "parsley": {
+  "file": "parsley.webp",
+  "title": "Petroselinum.jpg",
+  "author": "Jonathunder",
+  "license": "GFDL 1.2",
+  "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+  "source": "https://commons.wikimedia.org/wiki/File:Petroselinum.jpg"
+ },
+ "parsnip": {
+  "file": "parsnip.webp",
+  "title": "Pastinaca_sativa_MHNT.BOT.2004.0.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Pastinaca_sativa_MHNT.BOT.2004.0.jpg"
+ },
+ "parthenocissus-tricuspidata": {
+  "file": "parthenocissus-tricuspidata.webp",
+  "title": "Poertschach_Hauptstrasse_Parthenocissus_tricuspidata_Blattwerk_04062015_4423.jpg",
+  "author": "Johann Jaritz",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Poertschach_Hauptstrasse_Parthenocissus_tricuspidata_Blattwerk_04062015_4423.jpg"
+ },
+ "pea": {
+  "file": "pea.webp",
+  "title": "Doperwt_rijserwt_peulen_Pisum_sativum.jpg",
+  "author": "Rasbak",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Doperwt_rijserwt_peulen_Pisum_sativum.jpg"
+ },
+ "pear": {
+  "file": "pear.webp",
+  "title": "Pears.jpg",
+  "author": "Keith Weller",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Pears.jpg"
+ },
+ "pennisetum-alopecuroides": {
+  "file": "pennisetum-alopecuroides.webp",
+  "title": "Pennisetum_alopecuroides_-_Berlin_Botanical_Garden_-_IMG_8624.JPG",
+  "author": "Daderot",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Pennisetum_alopecuroides_-_Berlin_Botanical_Garden_-_IMG_8624.JPG"
+ },
+ "persicaria-amplexicaulis": {
+  "file": "persicaria-amplexicaulis.webp",
+  "title": "(MHNT)_Persicaria_amplexicaulis_Blackfield_-_Les_Martels,_Giroussens_Tarn.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:(MHNT)_Persicaria_amplexicaulis_Blackfield_-_Les_Martels,_Giroussens_Tarn.jpg"
+ },
+ "philadelphus-coronarius": {
+  "file": "philadelphus-coronarius.webp",
+  "title": "Philadelphus_coronarius.jpg",
+  "author": "No machine-readable author provided. Rainer Bielefeld assumed (based on copyright claims).",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Philadelphus_coronarius.jpg"
+ },
+ "pieris-japonica": {
+  "file": "pieris-japonica.webp",
+  "title": "Pieris_japonica_10.jpg",
+  "author": "Stan Shebs",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Pieris_japonica_10.jpg"
+ },
+ "pinus-sylvestris": {
+  "file": "pinus-sylvestris.webp",
+  "title": "Skuleskogen_pine.jpg",
+  "author": "Mickaël Delcey (Silverkey)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Skuleskogen_pine.jpg"
+ },
+ "polygonatum-multiflorum": {
+  "file": "polygonatum-multiflorum.webp",
+  "title": "Polygonatum_multiflorum_7789.jpg",
+  "author": "Borealis55",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Polygonatum_multiflorum_7789.jpg"
+ },
+ "polypodium-vulgare": {
+  "file": "polypodium-vulgare.webp",
+  "title": "Tüpfelfarn_(Polypodium_vulgare).jpg",
+  "author": "Michael Linnenbach",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:T%C3%BCpfelfarn_(Polypodium_vulgare).jpg"
+ },
+ "potato": {
+  "file": "potato.webp",
+  "title": "Patates.jpg",
+  "author": "Scott Bauer, USDA ARS",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Patates.jpg"
+ },
+ "potentilla-fruticosa": {
+  "file": "potentilla-fruticosa.webp",
+  "title": "Dasiphora_fruticosa_5698.jpg",
+  "author": "Walter Siegmund (talk)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Dasiphora_fruticosa_5698.jpg"
+ },
+ "prunus-spinosa": {
+  "file": "prunus-spinosa.webp",
+  "title": "Closeup_of_blackthorn_aka_sloe_aka_prunus_spinosa_sweden_20050924.jpg",
+  "author": "Martin Olsson (mnemo on en/sv wikipedia and commons, martin@minimum.se)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Closeup_of_blackthorn_aka_sloe_aka_prunus_spinosa_sweden_20050924.jpg"
+ },
+ "pulmonaria-officinalis": {
+  "file": "pulmonaria-officinalis.webp",
+  "title": "Pulmonaria_officinalis_800.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Pulmonaria_officinalis_800.jpg"
+ },
+ "pumpkin": {
+  "file": "pumpkin.webp",
+  "title": "FrenchMarketPumpkinsB.jpg",
+  "author": "Infrogmation of New Orleans",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:FrenchMarketPumpkinsB.jpg"
+ },
+ "radish": {
+  "file": "radish.webp",
+  "title": "Radish_3371103037_4ab07db0bf_o.jpg",
+  "author": "Self, en:User:Jengod",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Radish_3371103037_4ab07db0bf_o.jpg"
+ },
+ "raspberry": {
+  "file": "raspberry.webp",
+  "title": "Fertődi_kármin_málna.JPG",
+  "author": "Kollányi Gábor",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Fert%C5%91di_k%C3%A1rmin_m%C3%A1lna.JPG"
+ },
+ "redcurrant": {
+  "file": "redcurrant.webp",
+  "title": "Ribes_rubrum_1.jpg",
+  "author": "unknown",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Ribes_rubrum_1.jpg"
+ },
+ "rhododendron-hybrid": {
+  "file": "rhododendron-hybrid.webp",
+  "title": "Alpenroos.jpg",
+  "author": "albert kok",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Alpenroos.jpg"
+ },
+ "rhododendron-luteum": {
+  "file": "rhododendron-luteum.webp",
+  "title": "Rhododendron_luteum_(flower).jpg",
+  "author": "Chrumps",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Rhododendron_luteum_(flower).jpg"
+ },
+ "rhubarb": {
+  "file": "rhubarb.webp",
+  "title": "Rheum_rhabarbarum.2006-04-27.uellue.jpg",
+  "author": "Dieter Weber (User:Uellue)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Rheum_rhabarbarum.2006-04-27.uellue.jpg"
+ },
+ "rocket": {
+  "file": "rocket.webp",
+  "title": "Eruca_vesicaria_BM010755249.jpg",
+  "author": "Unknown authorUnknown author",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Eruca_vesicaria_BM010755249.jpg"
+ },
+ "rosa-canina": {
+  "file": "rosa-canina.webp",
+  "title": "Divlja_ruza_cvijet_270508.jpg",
+  "author": "Roberta F.",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Divlja_ruza_cvijet_270508.jpg"
+ },
+ "rosa-new-dawn": {
+  "file": "rosa-new-dawn.webp",
+  "title": "RosaCultivarNewDawn.JPG",
+  "author": "MM",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:RosaCultivarNewDawn.JPG"
+ },
+ "rosa-rugosa": {
+  "file": "rosa-rugosa.webp",
+  "title": "Rosa_rugosa_Tokyo.JPG",
+  "author": "Qwert1234",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Rosa_rugosa_Tokyo.JPG"
+ },
+ "rosemary": {
+  "file": "rosemary.webp",
+  "title": "Rosemary_in_bloom.JPG",
+  "author": "Margalob",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Rosemary_in_bloom.JPG"
+ },
+ "rudbeckia-fulgida": {
+  "file": "rudbeckia-fulgida.webp",
+  "title": "Rudbeckia_fulgida.JPG",
+  "author": "Jerzy Opioła (Poland)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Rudbeckia_fulgida.JPG"
+ },
+ "runner-bean": {
+  "file": "runner-bean.webp",
+  "title": "Illustration_Phaseolus_coccineus0.jpg",
+  "author": "unknown",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Illustration_Phaseolus_coccineus0.jpg"
+ },
+ "sage": {
+  "file": "sage.webp",
+  "title": "(MHNT)_Salvia_officinalis_flowers.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:(MHNT)_Salvia_officinalis_flowers.jpg"
+ },
+ "salvia-nemorosa": {
+  "file": "salvia-nemorosa.webp",
+  "title": "Salvia_nemorosa-IMG_3624.jpg",
+  "author": "C T Johansson",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Salvia_nemorosa-IMG_3624.jpg"
+ },
+ "salvia-yangii": {
+  "file": "salvia-yangii.webp",
+  "title": "Russian_sage_by_RO_IV.jpg",
+  "author": "Rationalobserver",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Russian_sage_by_RO_IV.jpg"
+ },
+ "sambucus-nigra": {
+  "file": "sambucus-nigra.webp",
+  "title": "Sambucus_nigra_004.jpg",
+  "author": "Willow",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Sambucus_nigra_004.jpg"
+ },
+ "sedum-acre": {
+  "file": "sedum-acre.webp",
+  "title": "Sedum_acre_single_-_Niitvälja.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Sedum_acre_single_-_Niitv%C3%A4lja.jpg"
+ },
+ "skimmia-japonica": {
+  "file": "skimmia-japonica.webp",
+  "title": "Skimmia_reevesiana1.jpg",
+  "author": "Kurt Stüber [1]",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Skimmia_reevesiana1.jpg"
+ },
+ "sorbus-aucuparia": {
+  "file": "sorbus-aucuparia.webp",
+  "title": "Rowan_tree_20081002b.jpg",
+  "author": "Eeno11",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Rowan_tree_20081002b.jpg"
+ },
+ "spinach": {
+  "file": "spinach.webp",
+  "title": "Spinacia_oleracea_Spinazie_bloeiend.jpg",
+  "author": "Rasbak",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Spinacia_oleracea_Spinazie_bloeiend.jpg"
+ },
+ "spiraea-japonica": {
+  "file": "spiraea-japonica.webp",
+  "title": "Spiraea_Japonica_Close-up.jpg",
+  "author": "TheNoob1337",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Spiraea_Japonica_Close-up.jpg"
+ },
+ "stachys-byzantina": {
+  "file": "stachys-byzantina.webp",
+  "title": "0_Stachys_byzantina_-_Yvoire_(2).JPG",
+  "author": "Jean-Pol GRANDMONT",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:0_Stachys_byzantina_-_Yvoire_(2).JPG"
+ },
+ "strawberry": {
+  "file": "strawberry.webp",
+  "title": "Garden_strawberry_(Fragaria_×_ananassa)_single2.jpg",
+  "author": "Ivar Leidus",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Garden_strawberry_(Fragaria_%C3%97_ananassa)_single2.jpg"
+ },
+ "succisa-pratensis": {
+  "file": "succisa-pratensis.webp",
+  "title": "Succisa_pratensis_sl6.jpg",
+  "author": "Stefan.lefnaer",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Succisa_pratensis_sl6.jpg"
+ },
+ "sweet-pepper": {
+  "file": "sweet-pepper.webp",
+  "title": "Green-Yellow-Red-Pepper-2009.jpg",
+  "author": "Kham Tran - www.khamtran.com",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Green-Yellow-Red-Pepper-2009.jpg"
+ },
+ "sweetcorn": {
+  "file": "sweetcorn.webp",
+  "title": "VegCorn.jpg",
+  "author": "The original Uploader was wstoakLL at English Wikipedia",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:VegCorn.jpg"
+ },
+ "symphyotrichum-novae-angliae": {
+  "file": "symphyotrichum-novae-angliae.webp",
+  "title": "Symphyotrichum_novae-angliae3.jpg",
+  "author": "The Cosmonaut",
+  "license": "CC BY-SA 2.5 ca",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/ca/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File:Symphyotrichum_novae-angliae3.jpg"
+ },
+ "syringa-vulgaris": {
+  "file": "syringa-vulgaris.webp",
+  "title": "Lilac_Flower&Leaves,_SC,_Vic,_13.10.2007.jpg",
+  "author": "Jjron",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Lilac_Flower%26Leaves,_SC,_Vic,_13.10.2007.jpg"
+ },
+ "taxus-baccata": {
+  "file": "taxus-baccata.webp",
+  "title": "Taxus_baccata_MHNT.jpg",
+  "author": "Didier Descouens",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Taxus_baccata_MHNT.jpg"
+ },
+ "teucrium-scorodonia": {
+  "file": "teucrium-scorodonia.webp",
+  "title": "Valse_salie_IMG_0951.JPG",
+  "author": "Teun Spaans",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Valse_salie_IMG_0951.JPG"
+ },
+ "thyme": {
+  "file": "thyme.webp",
+  "title": "Thymus_vulgaris1.JPG",
+  "author": "Henry Brisse (upload by user:Abalg)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Thymus_vulgaris1.JPG"
+ },
+ "thymus-serpyllum": {
+  "file": "thymus-serpyllum.webp",
+  "title": "Thymus_serpyllum1.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Thymus_serpyllum1.jpg"
+ },
+ "tomato": {
+  "file": "tomato.webp",
+  "title": "Tomato_je.jpg",
+  "author": "Softeis",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Tomato_je.jpg"
+ },
+ "tulipa-sylvestris": {
+  "file": "tulipa-sylvestris.webp",
+  "title": "Tulipa sylvestris (flower).jpg",
+  "author": "Meneerke bloem",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Tulipa_sylvestris_(flower).jpg"
+ },
+ "verbascum-nigrum": {
+  "file": "verbascum-nigrum.webp",
+  "title": "Verbascum_nigrum_02.jpg",
+  "author": "unknown",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Verbascum_nigrum_02.jpg"
+ },
+ "viburnum-opulus": {
+  "file": "viburnum-opulus.webp",
+  "title": "Viburnum_01.JPG",
+  "author": "Lestat (Jan Mehlich)",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Viburnum_01.JPG"
+ },
+ "viburnum-tinus": {
+  "file": "viburnum-tinus.webp",
+  "title": "Laurustinus_(Viburnum_tinus)_fruits_(15726383257).jpg",
+  "author": "Bernard DUPONT from FRANCE",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Laurustinus_(Viburnum_tinus)_fruits_(15726383257).jpg"
+ },
+ "vinca-minor": {
+  "file": "vinca-minor.webp",
+  "title": "Vinca_minor_Nashville.jpg",
+  "author": "Ryan Kaldari",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Vinca_minor_Nashville.jpg"
+ },
+ "waldsteinia-ternata": {
+  "file": "waldsteinia-ternata.webp",
+  "title": "Waldsteinia_ternata_03.jpg",
+  "author": "Agnieszka Kwiecień (Nova)",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File:Waldsteinia_ternata_03.jpg"
+ },
+ "wisteria-sinensis": {
+  "file": "wisteria-sinensis.webp",
+  "title": "Chinesischer_Blauregen_Detail_Blütentraube.JPG",
+  "author": "3268zauber",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Chinesischer_Blauregen_Detail_Bl%C3%BCtentraube.JPG"
  }
 }
